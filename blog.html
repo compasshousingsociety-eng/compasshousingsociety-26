@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blog | Compass Housing Society - Real Estate Insights</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #898DF0;
+      --light: #F3F3FA;
+      --accent: #FCD980;
+      --dark: #000000;
+      --dark-bg: #121212;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Merriweather', serif;
+      color: var(--dark);
+      background-color: var(--light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    h1 { font-size: 46px; line-height: 1.2; }
+    h2 { font-size: 36px; line-height: 1.3; }
+    h3 { font-size: 24px; line-height: 1.4; }
+    h4, h5, h6 { font-size: 20px; line-height: 1.4; }
+    li, span, p { font-size: 18px; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("Images/transparent-logo.jpeg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 570px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrapper {
+      max-width: 1920px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      padding-top: 82px;
+      background-color: var(--light);
+      transition: background-color 0.3s;
+    }
+
+    .content-layer { 
+      position: relative; 
+      z-index: 1;
+      min-height: calc(100vh - 200px);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--primary);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+      transition: background-color 0.3s;
+    }
+
+    .navbar-custom { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 24px; 
+      position: relative;
+      padding: 12px 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--light);
+    }
+
+    .brand img { 
+      width: 58px; 
+      height: 58px; 
+      object-fit: cover; 
+      border-radius: 8px;
+      border: 2px solid var(--light); 
+      opacity: 0.97; 
+      background: transparent; 
+    }
+
+    .nav-menu { 
+      display: flex; 
+      align-items: center; 
+      gap: 24px; 
+      flex: 1; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+    }
+
+    .nav-item { position: relative; }
+    .nav-link-custom {
+      color: var(--light);
+      padding: 4px 0;
+      opacity: 0.9;
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-link-custom::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .nav-link-custom:hover::after { width: 100%; }
+    .dropdown-toggle-custom::after { content: " ▾"; position: static; width: auto; height: auto; background: none; margin-left: 4px; }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 6px);
+      background-color: var(--primary);
+      border-radius: 10px;
+      border: 1px solid rgba(248, 250, 252, 0.12);
+      min-width: 190px;
+      display: none;
+      padding: 6px 0;
+      z-index: 120;
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .dropdown-menu-custom li a {
+      display: block;
+      padding: 8px 18px;
+      color: var(--light);
+      white-space: nowrap;
+      opacity: 0.9;
+      transition: background-color 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+    }
+
+    .dropdown-menu-custom li a:hover { background-color: rgba(243, 243, 250, 0.15); opacity: 1; color: var(--accent); }
+    .nav-item.dropdown.open>.dropdown-menu-custom { display: block; }
+
+    .nav-actions { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      margin-left: auto; 
+    }
+
+    .btn-animated { 
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease; 
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45); 
+    }
+
+    .btn-animated:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7); 
+      filter: brightness(0.96); 
+    }
+
+    .btn-register {
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+    }
+
+    .mode-toggle {
+      border: 1px solid rgba(248, 250, 252, 0.7);
+      border-radius: 999px;
+      padding: 3px 6px;
+      font-size: 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+      color: var(--light);
+      background: transparent;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--light);
+      background: transparent;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--light);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .mobile-actions {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    /* Hero Section - matching index.html style */
+    .hero-section {
+      padding: 50px 20px 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, #6a6fd8 100%);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-section h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-section p {
+      font-size: 20px;
+      margin-bottom: 25px;
+      opacity: 0.95;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn {
+      padding: 14px 35px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Merriweather', serif;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .hero-btn-primary {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Blog Content Section - matching index.html section gaps */
+    .blog-content {
+      padding: 40px 20px 30px;
+      margin-bottom: 20px;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .blog-header h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .blog-header p {
+      color: #666;
+      font-size: 18px;
+    }
+
+    /* Blog Grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .blog-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .blog-img {
+      height: 220px;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-img::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease;
+    }
+
+    .blog-card:hover .blog-img::before {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .blog-category {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .blog-info {
+      padding: 25px;
+    }
+
+    .blog-meta {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .blog-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .blog-meta-item i {
+      color: var(--primary);
+    }
+
+    .blog-title {
+      font-size: 20px;
+      color: var(--dark);
+      margin-bottom: 15px;
+      min-height: 60px;
+      line-height: 1.4;
+    }
+
+    .blog-excerpt {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .read-more:hover {
+      color: var(--accent);
+      gap: 12px;
+    }
+
+    .categories-section {
+      padding: 40px 20px 30px;
+      margin-bottom: 20px;
+    }
+
+    .categories-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .categories-header h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .categories-header p {
+      color: #666;
+      font-size: 18px;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    
+
+    .category-card:hover .category-icon {
+      color: var(--accent);
+    }
+
+    .category-card:hover .category-count {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .category-icon {
+      font-size: 36px;
+      color: var(--primary);
+      margin-bottom: 15px;
+      transition: color 0.3s ease;
+    }
+
+    .category-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .category-count {
+      display: inline-block;
+      background: var(--light);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .featured-posts {
+      padding: 40px 20px 30px;
+      margin-bottom: 20px;
+    }
+
+    .featured-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .featured-header h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .featured-header p {
+      color: #666;
+      font-size: 18px;
+    }
+
+    .featured-slider {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .featured-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .featured-img {
+      height: 180px;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .featured-content {
+      padding: 25px;
+    }
+
+    .featured-tag {
+      display: inline-block;
+      background: var(--light);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .featured-title {
+      font-size: 18px;
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .featured-date {
+      color: #666;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Newsletter Section - matching index.html */
+    .newsletter-section {
+      padding: 40px 20px 30px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--primary) 0%, #6a6fd8 100%);
+      color: white;
+      text-align: center;
+      border-radius: 16px;
+    }
+
+    .newsletter-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter-header h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .newsletter-header p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      opacity: 0.9;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+    }
+
+    .newsletter-btn {
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+      filter: brightness(0.96);
+    }
+
+    /* Footer - exactly matching index.html */
+    .site-footer {
+      background: var(--primary);
+      color: var(--light);
+      font-size: 14px;
+      width: 100%;
+      transition: background-color 0.3s;
+      padding: 30px 0 20px;
+      min-height: 180px;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 40px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 15px;
+    }
+
+    .footer-brand-column {
+      flex: 1.5;
+      min-width: 300px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .footer-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid var(--light);
+    }
+
+    .footer-brand-text h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--light);
+    }
+
+    .footer-brand-text p {
+      font-size: 15px;
+      opacity: 0.9;
+      max-width: 350px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .footer-social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .footer-social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      font-size: 18px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-social-icon:hover {
+      background: var(--accent);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    .footer-column h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--light);
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links li a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      font-size: 15px;
+    }
+
+    .footer-links li a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .footer-links li i {
+      margin-right: 8px;
+      color: var(--accent);
+      width: 16px;
+      text-align: center;
+    }
+
+    .footer-contact-info {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-contact-info li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .footer-contact-info li i {
+      margin-right: 12px;
+      color: var(--accent);
+      font-size: 16px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.8;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      width: 100%;
+    }
+
+    /* Dark Mode - matching index.html */
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .page-wrapper {
+      background-color: var(--dark-bg);
+    }
+
+    body.dark-mode header,
+    body.dark-mode .site-footer {
+      background-color: var(--dark-bg);
+    }
+
+    body.dark-mode .nav-menu {
+      background: var(--dark-bg);
+    }
+
+    body.dark-mode .dropdown-menu-custom {
+      background-color: var(--dark-bg);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-mode .brand img {
+      border-color: #e0e0e0;
+    }
+
+    body.dark-mode .mode-toggle {
+      border-color: rgba(255, 255, 255, 0.7);
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .brand {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .nav-link-custom {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .dropdown-menu-custom li a {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .footer-social-icon {
+      background: rgba(255, 255, 255, 0.1);
+      color: #e0e0e0;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body.dark-mode .footer-social-icon:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    body.dark-mode .hero-section {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+
+    body.dark-mode .blog-card {
+      background: #2a2a2a;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .blog-title {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .blog-excerpt {
+      color: #ccc;
+    }
+
+    body.dark-mode .blog-meta {
+      color: #aaa;
+    }
+
+   
+
+    body.dark-mode .category-card {
+      background: #2a2a2a;
+      color: #e0e0e0;
+    }
+
+    
+
+    body.dark-mode .category-count {
+      background: #3a3a3a;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .featured-card {
+      background: #2a2a2a;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .featured-title {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .featured-date {
+      color: #aaa;
+    }
+
+    body.dark-mode .featured-tag {
+      background: #3a3a3a;
+      color: var(--accent);
+    }
+
+    body.dark-mode .newsletter-section {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+
+    body.dark-mode .blog-header p,
+    body.dark-mode .categories-header p,
+    body.dark-mode .featured-header p,
+    body.dark-mode .newsletter-header p {
+      color: #ccc;
+    }
+    body.dark-mode .blog-header h2,
+    body.dark-mode .categories-header h2,
+    body.dark-mode .featured-header h2
+    {
+      color: var(--light);
+    }
+
+    body.dark-mode .footer-links li a,
+    body.dark-mode .footer-contact-info li {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    body.dark-mode .footer-links li a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 1200px) {
+      .blog-grid,
+      .categories-grid,
+      .featured-slider {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 1030px) {
+      .navbar-custom { 
+        padding: 10px 16px;
+        gap: 10px; 
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .brand {
+        order: 1;
+        flex: 1;
+      }
+      .nav-actions.desktop-actions {
+        display: none;
+      }
+      .mobile-actions {
+        display: flex;
+        order: 2;
+      }
+      .menu-toggle {
+        display: inline-flex;
+        order: 3;
+      }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: auto;
+        max-height: 90vh;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background: var(--primary);
+        padding: 20px;
+        border-radius: 0 0 0 16px;
+        box-shadow: -12px 0 30px rgba(0, 0, 0, 0.85);
+        z-index: 110;
+        gap: 12px;
+        transition: right 0.3s ease;
+        border: 1px solid rgba(248, 250, 252, 0.6);
+        overflow-y: auto;
+        margin-top: 0;
+      }
+      body.dark-mode .nav-menu {
+        background: var(--dark-bg);
+      }
+      .nav-menu.nav-open { right: 0; }
+      .nav-item { width: 100%; }
+      .nav-link-custom { width: 100%; padding: 10px 0; }
+      .dropdown-menu-custom { 
+        position: static; 
+        margin-top: 4px; 
+        background: rgba(255, 255, 255, 0.05); 
+        border-radius: 8px; 
+        border: none; 
+        box-shadow: none; 
+        padding: 0 0 4px 10px; 
+        display: none;
+      }
+      body.dark-mode .dropdown-menu-custom {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .dropdown-menu-custom li a { padding: 8px 0; font-size: 15px; opacity: 0.85; }
+      .nav-item.dropdown.open>.dropdown-menu-custom { display: block; }
+      
+      .site-footer {
+        min-height: auto;
+        padding: 30px 0 15px;
+        margin-top: 15px;
+      }
+      
+      .footer-content {
+        gap: 30px;
+      }
+      
+      .footer-column {
+        min-width: 200px;
+      }
+      
+      .footer-brand-column {
+        min-width: 100%;
+      }
+      
+      .footer-brand {
+        align-items: center;
+        text-align: center;
+      }
+      
+      .footer-brand-text p {
+        max-width: 100%;
+        margin: 0 auto 20px;
+      }
+
+      .hero-section {
+        padding: 40px 20px 30px;
+        margin-bottom: 15px;
+      }
+
+      .hero-section h1 {
+        font-size: 34px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-btn {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .blog-content,
+      .categories-section,
+      .featured-posts,
+      .newsletter-section {
+        padding: 30px 20px 20px;
+        margin-bottom: 15px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-input,
+      .newsletter-btn {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 1031px) {
+      .nav-actions.desktop-actions {
+        display: flex;
+      }
+      .mobile-actions {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .blog-grid,
+      .categories-grid,
+      .featured-slider {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .footer-column,
+      .footer-brand-column {
+        min-width: 100%;
+        text-align: center;
+      }
+      
+      .footer-links li a:hover {
+        transform: none;
+      }
+      
+      .footer-contact-info li {
+        justify-content: center;
+      }
+      
+      .footer-social-icons {
+        justify-content: center;
+      }
+
+      .blog-title {
+        min-height: auto;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .page-wrapper { padding-top: 60px; }
+      .brand span { font-size: 14px; }
+      .brand img { width: 40px; height: 40px; }
+      .nav-menu {
+        width: 250px;
+        max-height: 85vh;
+        top: 60px;
+        right: -250px;
+      }
+      .mobile-actions {
+        gap: 8px;
+      }
+      
+      .footer-brand-text h3 {
+        font-size: 22px;
+      }
+      
+      .footer-brand-text p {
+        font-size: 14px;
+      }
+      
+      .footer-social-icons {
+        gap: 10px;
+      }
+      
+      .footer-social-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+      }
+      
+      .footer-bottom {
+        font-size: 13px;
+      }
+
+      .hero-section h1 {
+        font-size: 28px;
+      }
+
+      .hero-section p {
+        font-size: 17px;
+      }
+
+      .hero-btn {
+        padding: 12px 30px;
+        font-size: 16px;
+      }
+
+      .blog-header h2,
+      .categories-header h2,
+      .featured-header h2,
+      .newsletter-header h2 {
+        font-size: 28px;
+      }
+
+      .blog-title,
+      .featured-title {
+        font-size: 18px;
+      }
+
+      .blog-excerpt {
+        font-size: 14px;
+      }
+
+      .category-card {
+        padding: 20px 15px;
+      }
+
+      .category-name {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="content-layer">
+      <header>
+        <nav class="navbar-custom">
+          <div class="brand">
+            <img src="Images/logo.jpeg" alt="Compass Housing Society Logo">
+            <span>Compass Housing<br> Society</span>
+          </div>
+
+          <div class="mobile-actions">
+            <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode">
+              <span class="mode-icon">🌙</span>
+            </button>
+            <a href="login.html">
+              <button class="btn-register btn-animated" type="button">Login</button>
+            </a>
+          </div>
+
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link-custom">Home 1</a>
+            </li>
+            <li class="nav-item">
+              <a href="home2.html" class="nav-link-custom">Home 2</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <span class="nav-link-custom dropdown-toggle-custom">Services List</span>
+              <ul class="dropdown-menu-custom">
+                <li><a href="services.html">Service</a></li>
+                <li><a href="servicedetails.html">Service Details</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <span class="nav-link-custom dropdown-toggle-custom">Blog Design</span>
+              <ul class="dropdown-menu-custom">
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="blogdetails.html">Blog Details</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <span class="nav-link-custom dropdown-toggle-custom">About Us</span>
+              <ul class="dropdown-menu-custom">
+              <li><a href="aboutus.html">About Us</a></li>
+              <li><a href="additionalpage.html">404</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+              <li><a href="commingsoon.html">Comming Soon</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="contactus.html" class="nav-link-custom">Contact Us</a>
+            </li>
+          </ul>
+
+          <div class="nav-actions desktop-actions">
+            <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode">
+              <span class="mode-icon">🌙</span>
+            </button>
+            <a href="login.html">
+              <button class="btn-register btn-animated" type="button">Login</button>
+            </a>
+          </div>
+
+          <button class="menu-toggle" type="button" aria-label="Toggle menu">☰</button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="blog-content" id="latest-posts">
+          <div class="blog-header">
+            <h2>Latest Articles</h2>
+            <p>Expert insights and practical advice for home buyers, sellers, and investors</p>
+          </div>
+          <div class="container">
+            <div class="blog-grid">
+              <div class="blog-card">
+                <div class="blog-img" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                  <div class="blog-category">Buying Guide</div>
+                </div>
+                <div class="blog-info">
+                  <div class="blog-meta">
+                    <div class="blog-meta-item">
+                      <i class="far fa-calendar"></i>
+                      <span>Mar 15, 2024</span>
+                    </div>
+                    <div class="blog-meta-item">
+                      <i class="far fa-clock"></i>
+                      <span>5 min read</span>
+                    </div>
+                  </div>
+                  <h3 class="blog-title">How to Choose the Perfect Neighborhood for Your Family</h3>
+                  <p class="blog-excerpt">Discover the key factors to consider when selecting a neighborhood that fits your family's lifestyle, budget, and future needs.</p>
+                  
+                </div>
+              </div>
+              
+              <div class="blog-card">
+                <div class="blog-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                  <div class="blog-category">Investment</div>
+                </div>
+                <div class="blog-info">
+                  <div class="blog-meta">
+                    <div class="blog-meta-item">
+                      <i class="far fa-calendar"></i>
+                      <span>Mar 10, 2024</span>
+                    </div>
+                    <div class="blog-meta-item">
+                      <i class="far fa-clock"></i>
+                      <span>8 min read</span>
+                    </div>
+                  </div>
+                  <h3 class="blog-title">Top 5 Real Estate Investment Strategies for 2024</h3>
+                  <p class="blog-excerpt">Explore the most promising real estate investment opportunities and strategies that are expected to perform well in the coming year.</p>
+                  
+                </div>
+              </div>
+              
+              <div class="blog-card">
+                <div class="blog-img" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                  <div class="blog-category">Market Trends</div>
+                </div>
+                <div class="blog-info">
+                  <div class="blog-meta">
+                    <div class="blog-meta-item">
+                      <i class="far fa-calendar"></i>
+                      <span>Mar 5, 2024</span>
+                    </div>
+                    <div class="blog-meta-item">
+                      <i class="far fa-clock"></i>
+                      <span>6 min read</span>
+                    </div>
+                  </div>
+                  <h3 class="blog-title">2024 Housing Market Predictions & Analysis</h3>
+                  <p class="blog-excerpt">Get expert analysis of current market trends and predictions for the housing market in the upcoming year based on economic indicators.</p>
+                  
+                </div>
+              </div>
+              
+              <div class="blog-card">
+                <div class="blog-img" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                  <div class="blog-category">Home Improvement</div>
+                </div>
+                <div class="blog-info">
+                  <div class="blog-meta">
+                    <div class="blog-meta-item">
+                      <i class="far fa-calendar"></i>
+                      <span>Feb 28, 2024</span>
+                    </div>
+                    <div class="blog-meta-item">
+                      <i class="far fa-clock"></i>
+                      <span>7 min read</span>
+                    </div>
+                  </div>
+                  <h3 class="blog-title">Home Renovation Ideas That Add Maximum Value</h3>
+                  <p class="blog-excerpt">Learn which home improvement projects offer the best return on investment and can significantly increase your property's value.</p>
+                  
+                </div>
+              </div>
+              
+              <div class="blog-card">
+                <div class="blog-img" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                  <div class="blog-category">Financing</div>
+                </div>
+                <div class="blog-info">
+                  <div class="blog-meta">
+                    <div class="blog-meta-item">
+                      <i class="far fa-calendar"></i>
+                      <span>Feb 22, 2024</span>
+                    </div>
+                    <div class="blog-meta-item">
+                      <i class="far fa-clock"></i>
+                      <span>10 min read</span>
+                    </div>
+                  </div>
+                  <h3 class="blog-title">Understanding Mortgage Options for First-Time Buyers</h3>
+                  <p class="blog-excerpt">A comprehensive guide to different mortgage types, interest rates, and tips for securing the best home loan for your situation.</p>
+                  
+                </div>
+              </div>
+              
+              <div class="blog-card">
+                <div class="blog-img" style="background-image: url('https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                  <div class="blog-category">Legal Tips</div>
+                </div>
+                <div class="blog-info">
+                  <div class="blog-meta">
+                    <div class="blog-meta-item">
+                      <i class="far fa-calendar"></i>
+                      <span>Feb 18, 2024</span>
+                    </div>
+                    <div class="blog-meta-item">
+                      <i class="far fa-clock"></i>
+                      <span>9 min read</span>
+                    </div>
+                  </div>
+                  <h3 class="blog-title">Essential Legal Documents for Property Transactions</h3>
+                  <p class="blog-excerpt">Understand the crucial legal documents needed for buying, selling, or leasing properties and how to ensure everything is in order.</p>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="hero-section">
+          <div class="hero-content">
+            <h1>Real Estate Insights & Trends</h1>
+            <p>Stay updated with the latest market trends, investment tips, and expert advice from our real estate professionals.</p>
+            <div class="hero-buttons">
+              <a href="blogdetails.html" class="hero-btn hero-btn-primary">Latest Articles</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="categories-section" id="categories">
+          <div class="categories-header">
+            <h2>Browse by Category</h2>
+            <p>Explore our articles organized by topic to find exactly what you're looking for</p>
+          </div>
+          <div class="container">
+            <div class="categories-grid">
+              <div class="category-card">
+                <div class="category-icon">
+                  <i class="fas fa-home"></i>
+                </div>
+                <h3 class="category-name">Buying Guide</h3>
+                <div class="category-count">24 Articles</div>
+              </div>
+              
+              <div class="category-card">
+                <div class="category-icon">
+                  <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="category-name">Market Trends</h3>
+                <div class="category-count">18 Articles</div>
+              </div>
+              
+              <div class="category-card">
+                <div class="category-icon">
+                  <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3 class="category-name">Investment Tips</h3>
+                <div class="category-count">22 Articles</div>
+              </div>
+              
+              <div class="category-card">
+                <div class="category-icon">
+                  <i class="fas fa-tools"></i>
+                </div>
+                <h3 class="category-name">Home Improvement</h3>
+                <div class="category-count">15 Articles</div>
+              </div>
+              
+              <div class="category-card">
+                <div class="category-icon">
+                  <i class="fas fa-file-contract"></i>
+                </div>
+                <h3 class="category-name">Legal Tips</h3>
+                <div class="category-count">12 Articles</div>
+              </div>
+              
+              <div class="category-card">
+                <div class="category-icon">
+                  <i class="fas fa-percentage"></i>
+                </div>
+                <h3 class="category-name">Financing</h3>
+                <div class="category-count">16 Articles</div>
+              </div>
+              
+              <div class="category-card">
+                <div class="category-icon">
+                  <i class="fas fa-city"></i>
+                </div>
+                <h3 class="category-name">Commercial Real Estate</h3>
+                <div class="category-count">14 Articles</div>
+              </div>
+              
+              <div class="category-card">
+                <div class="category-icon">
+                  <i class="fas fa-tag"></i>
+                </div>
+                <h3 class="category-name">Selling Tips</h3>
+                <div class="category-count">20 Articles</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="featured-posts">
+          <div class="featured-header">
+            <h2>Featured Posts</h2>
+            <p>Our most popular and highly recommended articles</p>
+          </div>
+          <div class="container">
+            <div class="featured-slider">
+              <div class="featured-card">
+                <div class="featured-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                <div class="featured-content">
+                  <div class="featured-tag">Top Read</div>
+                  <h3 class="featured-title">The Complete Guide to Real Estate Investment Trusts (REITs)</h3>
+                  <div class="featured-date">
+                    <i class="far fa-calendar"></i>
+                    <span>February 10, 2024</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="featured-card">
+                <div class="featured-img" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                <div class="featured-content">
+                  <div class="featured-tag">Editor's Pick</div>
+                  <h3 class="featured-title">Sustainable Home Features That Save Money & Energy</h3>
+                  <div class="featured-date">
+                    <i class="far fa-calendar"></i>
+                    <span>January 28, 2024</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="featured-card">
+                <div class="featured-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+                <div class="featured-content">
+                  <div class="featured-tag">Most Shared</div>
+                  <h3 class="featured-title">Negotiation Strategies That Save Thousands When Buying a Home</h3>
+                  <div class="featured-date">
+                    <i class="far fa-calendar"></i>
+                    <span>January 15, 2024</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+      </main>
+
+      <footer class="site-footer" id="contact">
+        <div class="footer-content">
+          <div class="footer-column footer-brand-column">
+            <div class="footer-brand">
+              <div class="footer-brand-text">
+                <h3>Compass Housing Society</h3>
+                <p>Your trusted partner in real estate. Finding homes that become memories.</p>
+              </div>
+              
+              <div class="footer-social-icons">
+                <a href="https://www.facebook.com/" class="footer-social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com/" class="footer-social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" class="footer-social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" class="footer-social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="aboutus.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+              <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+              <li><a href="contactus.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Blog Categories</h4>
+            <ul class="footer-links">
+              <li><a href="blog.html"><i class="fas fa-home"></i> Buying Guide</a></li>
+              <li><a href="blog.html"><i class="fas fa-chart-line"></i> Market Trends</a></li>
+              <li><a href="blog.html"><i class="fas fa-hand-holding-usd"></i> Investment Tips</a></li>
+              <li><a href="blog.html"><i class="fas fa-tools"></i> Home Improvement</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© Copyright Compass Housing Society 2024. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const body = document.body;
+      const modeToggles = document.querySelectorAll(".mode-toggle");
+      const modeIcons = document.querySelectorAll(".mode-icon");
+      const storedTheme = localStorage.getItem("compass-theme");
+
+      if (storedTheme === "dark") {
+        body.classList.add("dark-mode");
+        modeIcons.forEach(icon => icon.textContent = "☀️");
+      } else {
+        modeIcons.forEach(icon => icon.textContent = "🌙");
+      }
+
+      modeToggles.forEach(toggle => {
+        toggle.addEventListener("click", function () {
+          const isDark = body.classList.toggle("dark-mode");
+          modeIcons.forEach(icon => icon.textContent = isDark ? "☀️" : "🌙");
+          localStorage.setItem("compass-theme", isDark ? "dark" : "light");
+        });
+      });
+
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navMenu = document.querySelector(".nav-menu");
+
+      function closeMenu() {
+        if (navMenu) navMenu.classList.remove("nav-open");
+      }
+
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", function () {
+          navMenu.classList.toggle("nav-open");
+        });
+
+        document.addEventListener('click', function(event) {
+          const isClickInsideMenu = navMenu.contains(event.target);
+          const isClickOnToggle = menuToggle.contains(event.target);
+          const isClickOnMobileActions = document.querySelector('.mobile-actions').contains(event.target);
+          
+          if (window.innerWidth <= 1030 && !isClickInsideMenu && !isClickOnToggle && !isClickOnMobileActions && navMenu.classList.contains('nav-open')) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' && window.innerWidth <= 1030 && navMenu.classList.contains('nav-open')) {
+            closeMenu();
+          }
+        });
+      }
+
+      const dropdownItems = document.querySelectorAll(".nav-item.dropdown > .nav-link-custom");
+
+      dropdownItems.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const parent = this.parentElement;
+
+          document.querySelectorAll(".nav-item.dropdown.open").forEach(item => {
+            if (item !== parent) {
+              item.classList.remove("open");
+            }
+          });
+
+          parent.classList.toggle("open");
+        });
+      });
+
+      const normalLinks = document.querySelectorAll(".nav-item:not(.dropdown) .nav-link-custom, .nav-item:not(.dropdown) a");
+
+      normalLinks.forEach(l => {
+        l.addEventListener("click", function () {
+          if (window.innerWidth <= 1030) {
+            closeMenu();
+          }
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 1030) {
+          closeMenu();
+        }
+      });
+
+      const blogCards = document.querySelectorAll('.blog-card');
+      const categoryCards = document.querySelectorAll('.category-card');
+      const newsletterForm = document.querySelector('.newsletter-form');
+
+      blogCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          if (!e.target.closest('.read-more')) {
+            const title = this.querySelector('.blog-title').textContent;
+            alert(`Opening article: "${title}"`);
+          }
+        });
+      });
+
+      categoryCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const category = this.querySelector('.category-name').textContent;
+          alert(`Loading articles from category: ${category}`);
+        });
+      });
+
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = this.querySelector('.newsletter-input').value;
+          alert(`Thank you for subscribing with email: ${email}\nYou'll receive our next newsletter soon!`);
+          this.reset();
+        });
+      }
+
+      const featuredCards = document.querySelectorAll('.featured-card');
+      featuredCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const title = this.querySelector('.featured-title').textContent;
+          alert(`Opening featured article: "${title}"`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
