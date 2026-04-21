@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Service Details - Compass Housing Society</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #898DF0;
+      --light: #F3F3FA;
+      --accent: #FCD980;
+      --dark: #000000;
+      --dark-bg: #121212;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Merriweather', serif;
+      color: var(--dark);
+      background-color: var(--light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    h1 { font-size: 46px; line-height: 1.2; }
+    h2 { font-size: 36px; line-height: 1.3; }
+    h3 { font-size: 24px; line-height: 1.4; }
+    h4, h5, h6 { font-size: 20px; line-height: 1.4; }
+    li, span, p { font-size: 18px; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("Images/transparent-logo.jpeg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 570px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrapper {
+      max-width: 1920px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      padding-top: 82px;
+      background-color: var(--light);
+      transition: background-color 0.3s;
+    }
+
+    .content-layer { 
+      position: relative; 
+      z-index: 1;
+      min-height: calc(100vh - 200px);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--primary);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+      transition: background-color 0.3s;
+    }
+
+    .navbar-custom { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 24px; 
+      position: relative;
+      padding: 12px 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--light);
+    }
+
+    .brand img { 
+      width: 58px; 
+      height: 58px; 
+      object-fit: cover; 
+      border-radius: 8px;
+      border: 2px solid var(--light); 
+      opacity: 0.97; 
+      background: transparent; 
+    }
+
+    .nav-menu { 
+      display: flex; 
+      align-items: center; 
+      gap: 24px; 
+      flex: 1; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+    }
+
+    .nav-item { position: relative; }
+    .nav-link-custom {
+      color: var(--light);
+      padding: 4px 0;
+      opacity: 0.9;
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-link-custom::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .nav-link-custom:hover::after { width: 100%; }
+    .dropdown-toggle-custom::after { content: " ▾"; position: static; width: auto; height: auto; background: none; margin-left: 4px; }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 6px);
+      background-color: var(--primary);
+      border-radius: 10px;
+      border: 1px solid rgba(248, 250, 252, 0.12);
+      min-width: 190px;
+      display: none;
+      padding: 6px 0;
+      z-index: 120;
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .dropdown-menu-custom li a {
+      display: block;
+      padding: 8px 18px;
+      color: var(--light);
+      white-space: nowrap;
+      opacity: 0.9;
+      transition: background-color 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+    }
+
+    .dropdown-menu-custom li a:hover { background-color: rgba(243, 243, 250, 0.15); opacity: 1; color: var(--accent); }
+    .nav-item.dropdown.open>.dropdown-menu-custom { display: block; }
+
+    .nav-actions { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      margin-left: auto; 
+    }
+
+    .btn-animated { 
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease; 
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45); 
+    }
+
+    .btn-animated:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7); 
+      filter: brightness(0.96); 
+    }
+
+    .btn-register {
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+    }
+
+    .btn-secondary {
+      background: var(--primary);
+      color: var(--light);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+    }
+
+    .mode-toggle {
+      border: 1px solid rgba(248, 250, 252, 0.7);
+      border-radius: 999px;
+      padding: 3px 6px;
+      font-size: 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+      color: var(--light);
+      background: transparent;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--light);
+      background: transparent;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--light);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .mobile-actions {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .site-footer {
+      background: var(--primary);
+      color: var(--light);
+      font-size: 14px;
+      width: 100%;
+      transition: background-color 0.3s;
+      padding: 30px 0 20px;
+      min-height: 180px;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 40px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 15px;
+    }
+
+    .footer-brand-column {
+      flex: 1.5;
+      min-width: 300px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .footer-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid var(--light);
+    }
+
+    .footer-brand-text h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--light);
+    }
+
+    .footer-brand-text p {
+      font-size: 15px;
+      opacity: 0.9;
+      max-width: 350px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .footer-social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .footer-social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      font-size: 18px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-social-icon:hover {
+      background: var(--accent);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    .footer-column h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--light);
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links li a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      font-size: 15px;
+    }
+
+    .footer-links li a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .footer-links li i {
+      margin-right: 8px;
+      color: var(--accent);
+      width: 16px;
+      text-align: center;
+    }
+
+    .footer-contact-info {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-contact-info li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .footer-contact-info li i {
+      margin-right: 12px;
+      color: var(--accent);
+      font-size: 16px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.8;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      width: 100%;
+    }
+
+    .service-detail-hero {
+      padding: 50px 20px 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, #6a6fd8 100%);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .service-detail-hero h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .service-detail-hero p {
+      font-size: 20px;
+      margin-bottom: 25px;
+      opacity: 0.95;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .service-detail-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .service-detail-content {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .service-main-content {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-feature-image {
+      width: 100%;
+      height: 400px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .service-description-section h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+
+    .service-description-section p {
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .service-features-list {
+      margin: 30px 0;
+    }
+
+    .service-features-list h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .feature-content h4 {
+      color: var(--dark);
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .feature-content p {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+
+    .service-process {
+      margin: 30px 0;
+    }
+
+    .service-process h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .process-step {
+      background: var(--light);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin: 0 auto 15px;
+    }
+
+    .process-step h4 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .process-step p {
+      color: #666;
+      font-size: 15px;
+    }
+
+    .service-sidebar {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .service-info-card {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .service-icon-large {
+      font-size: 60px;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .service-price {
+      font-size: 36px;
+      color: var(--accent);
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .service-price span {
+      font-size: 18px;
+      color: #666;
+    }
+
+    .service-details-list {
+      margin: 25px 0;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      color: #666;
+    }
+
+    .detail-value {
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .sidebar-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .sidebar-actions .btn-register,
+    .sidebar-actions .btn-secondary {
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .related-services {
+      margin: 40px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-header h2 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 32px;
+    }
+
+    .section-header p {
+      color: #666;
+      font-size: 18px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .related-services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .related-service-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .related-service-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .related-service-image {
+      height: 180px;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .related-service-content {
+      padding: 25px;
+    }
+
+    .related-service-content h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .related-service-content p {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .service-faq {
+      background: var(--light);
+      padding: 40px 20px;
+      border-radius: 16px;
+      margin: 40px 0;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .faq-question {
+      padding: 20px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .faq-answer {
+      padding: 0 25px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: #666;
+    }
+
+    .faq-answer.active {
+      padding: 0 25px 25px;
+      max-height: 500px;
+    }
+
+    .faq-toggle {
+      color: var(--accent);
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-toggle.active {
+      transform: rotate(45deg);
+    }
+
+    .service-cta {
+      background: linear-gradient(135deg, var(--primary) 0%, #6a6fd8 100%);
+      padding: 40px;
+      color: white;
+      text-align: center;
+      border-radius: 16px;
+      margin: 40px 0;
+    }
+
+    .service-cta h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .service-cta p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: #ffffff;
+    }
+
+    body.dark-mode .page-wrapper {
+      background-color: var(--dark-bg);
+    }
+
+    body.dark-mode header,
+    body.dark-mode .site-footer {
+      background-color: var(--dark-bg);
+    }
+
+    body.dark-mode .nav-menu {
+      background: var(--dark-bg);
+    }
+
+    body.dark-mode .dropdown-menu-custom {
+      background-color: var(--dark-bg);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-mode .brand img {
+      border-color: #ffffff;
+    }
+
+    body.dark-mode .mode-toggle {
+      border-color: rgba(255, 255, 255, 0.7);
+      color: #ffffff;
+    }
+
+    body.dark-mode .brand {
+      color: #ffffff;
+    }
+
+    body.dark-mode .nav-link-custom {
+      color: #ffffff;
+    }
+
+    body.dark-mode .dropdown-menu-custom li a {
+      color: #ffffff;
+    }
+
+    body.dark-mode .footer-social-icon {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body.dark-mode .footer-social-icon:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    body.dark-mode .service-detail-hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+
+    body.dark-mode .service-main-content,
+    body.dark-mode .service-sidebar,
+    body.dark-mode .related-service-card {
+      background: #2a2a2a;
+      color: #ffffff;
+    }
+
+    body.dark-mode .service-description-section h2,
+    body.dark-mode .service-features-list h3,
+    body.dark-mode .service-process h3,
+    body.dark-mode .feature-content h4,
+    body.dark-mode .process-step h4,
+    body.dark-mode .related-service-content h3,
+    body.dark-mode .section-header h2 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .service-description-section p,
+    body.dark-mode .feature-content p,
+    body.dark-mode .process-step p,
+    body.dark-mode .related-service-content p,
+    body.dark-mode .detail-label,
+    body.dark-mode .section-header p {
+      color: #ffffff;
+    }
+
+    body.dark-mode .feature-icon {
+      background: #3a3a3a;
+      color: #ffffff;
+    }
+
+    body.dark-mode .process-step {
+      background: #3a3a3a;
+    }
+
+    body.dark-mode .detail-item {
+      border-bottom-color: #444;
+    }
+
+    body.dark-mode .detail-value {
+      color: #ffffff;
+    }
+
+    body.dark-mode .service-faq {
+      background: #1a1a1a;
+    }
+
+    body.dark-mode .faq-item {
+      background: #2a2a2a;
+    }
+
+    body.dark-mode .faq-question {
+      color: #ffffff;
+    }
+
+    body.dark-mode .faq-answer {
+      color: #ffffff;
+    }
+
+    body.dark-mode .service-cta {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+
+    body.dark-mode .service-info-card h3 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .service-info-card p {
+      color: #ffffff;
+    }
+
+    body.dark-mode .service-price span {
+      color: #ffffff;
+    }
+
+    body.dark-mode .service-icon-large {
+      color: #ffffff;
+    }
+
+    body.dark-mode .step-number {
+      color: #ffffff;
+    }
+
+    body.dark-mode .faq-toggle {
+      color: #ffffff;
+    }
+
+    body.dark-mode .footer-brand-text h3 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .footer-brand-text p {
+      color: #ffffff;
+    }
+
+    body.dark-mode .footer-column h4 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .footer-links li a {
+      color: #ffffff;
+    }
+
+    body.dark-mode .footer-contact-info li {
+      color: #ffffff;
+    }
+
+    body.dark-mode .footer-bottom {
+      color: #ffffff;
+    }
+
+    @media (max-width: 1030px) {
+      .navbar-custom { 
+        padding: 10px 16px;
+        gap: 10px; 
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .brand {
+        order: 1;
+        flex: 1;
+      }
+      .nav-actions.desktop-actions {
+        display: none;
+      }
+      .mobile-actions {
+        display: flex;
+        order: 2;
+      }
+      .menu-toggle {
+        display: inline-flex;
+        order: 3;
+      }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: auto;
+        max-height: 90vh;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background: var(--primary);
+        padding: 20px;
+        border-radius: 0 0 0 16px;
+        box-shadow: -12px 0 30px rgba(0, 0, 0, 0.85);
+        z-index: 110;
+        gap: 12px;
+        transition: right 0.3s ease;
+        border: 1px solid rgba(248, 250, 252, 0.6);
+        overflow-y: auto;
+        margin-top: 0;
+      }
+      body.dark-mode .nav-menu {
+        background: var(--dark-bg);
+      }
+      .nav-menu.nav-open { right: 0; }
+      .nav-item { width: 100%; }
+      .nav-link-custom { width: 100%; padding: 10px 0; }
+      .dropdown-menu-custom { 
+        position: static; 
+        margin-top: 4px; 
+        background: rgba(255, 255, 255, 0.05); 
+        border-radius: 8px; 
+        border: none; 
+        box-shadow: none; 
+        padding: 0 0 4px 10px; 
+        display: none;
+      }
+      body.dark-mode .dropdown-menu-custom {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .dropdown-menu-custom li a { padding: 8px 0; font-size: 15px; opacity: 0.85; }
+      .nav-item.dropdown.open>.dropdown-menu-custom { display: block; }
+      
+      .site-footer {
+        min-height: auto;
+        padding: 30px 0 15px;
+        margin-top: 15px;
+      }
+      
+      .footer-content {
+        gap: 30px;
+      }
+      
+      .footer-column {
+        min-width: 200px;
+      }
+      
+      .footer-brand-column {
+        min-width: 100%;
+      }
+      
+      .footer-brand {
+        align-items: center;
+        text-align: center;
+      }
+      
+      .footer-brand-text p {
+        max-width: 100%;
+        margin: 0 auto 20px;
+      }
+
+      .service-detail-hero {
+        padding: 40px 20px 30px;
+        margin-bottom: 15px;
+      }
+
+      .service-detail-hero h1 {
+        font-size: 34px;
+      }
+
+      .service-detail-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .service-sidebar {
+        position: static;
+      }
+
+      .related-services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-buttons .btn-register,
+      .cta-buttons .btn-secondary {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+
+    @media (min-width: 1031px) {
+      .nav-actions.desktop-actions {
+        display: flex;
+      }
+      .mobile-actions {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .properties-slider {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      
+      .property-slide {
+        min-width: 0;
+      }
+      
+      .property-info h3 {
+        min-height: auto;
+      }
+      
+      .property-info > p {
+        min-height: auto;
+      }
+      
+      .service-main-content,
+      .service-sidebar {
+        padding: 25px;
+      }
+      
+      .service-feature-image {
+        height: 300px;
+      }
+      
+      .feature-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .related-services-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .service-cta {
+        padding: 30px 20px;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .footer-column,
+      .footer-brand-column {
+        min-width: 100%;
+        text-align: center;
+      }
+      
+      .footer-links li a:hover {
+        transform: none;
+      }
+      
+      .footer-contact-info li {
+        justify-content: center;
+      }
+      
+      .footer-social-icons {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .page-wrapper { padding-top: 60px; }
+      .brand span { font-size: 14px; }
+      .brand img { width: 40px; height: 40px; }
+      .nav-menu {
+        width: 250px;
+        max-height: 85vh;
+        top: 60px;
+        right: -250px;
+      }
+      .mobile-actions {
+        gap: 8px;
+      }
+      
+      .footer-brand-text h3 {
+        font-size: 22px;
+      }
+      
+      .footer-brand-text p {
+        font-size: 14px;
+      }
+      
+      .footer-social-icons {
+        gap: 10px;
+      }
+      
+      .footer-social-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+      }
+      
+      .footer-bottom {
+        font-size: 13px;
+      }
+
+      .service-detail-hero h1 {
+        font-size: 28px;
+      }
+
+      .service-detail-hero p {
+        font-size: 17px;
+      }
+
+      .service-description-section h2,
+      .section-header h2,
+      .service-cta h2 {
+        font-size: 28px;
+      }
+
+      .service-price {
+        font-size: 30px;
+      }
+
+      .service-icon-large {
+        font-size: 48px;
+      }
+
+      .properties-slider {
+        grid-template-columns: 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .pricing-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase-header h2,
+      .process-header h2,
+      .team-header h2,
+      .pricing-header h2 {
+        font-size: 28px;
+      }
+
+      .property-info h3,
+      .process-step h3,
+      .member-info h4,
+      .pricing-plan {
+        font-size: 20px;
+      }
+
+      .property-price {
+        font-size: 24px;
+      }
+
+      .pricing-price {
+        font-size: 36px;
+      }
+      
+      .properties-container {
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <div class="content-layer">
+      <header>
+        <nav class="navbar-custom">
+          <div class="brand">
+            <img src="Images/logo.jpeg" alt="Compass Housing Society Logo">
+            <span>Compass Housing<br> Society</span>
+          </div>
+
+          <div class="mobile-actions">
+            <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode">
+              <span class="mode-icon">🌙</span>
+            </button>
+            <a href="login.html">
+              <button class="btn-register btn-animated" type="button">Login</button>
+            </a>
+          </div>
+
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link-custom">Home 1</a>
+            </li>
+            <li class="nav-item">
+              <a href="home2.html" class="nav-link-custom">Home 2</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <span class="nav-link-custom dropdown-toggle-custom">Services List</span>
+              <ul class="dropdown-menu-custom">
+                <li><a href="services.html">Service</a></li>
+                <li><a href="servicedetails.html">Service Details</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <span class="nav-link-custom dropdown-toggle-custom">Blog Design</span>
+              <ul class="dropdown-menu-custom">
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="blogdetails.html">Blog Details</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <span class="nav-link-custom dropdown-toggle-custom">About Us</span>
+              <ul class="dropdown-menu-custom">
+              <li><a href="aboutus.html">About Us</a></li>
+              <li><a href="additionalpage.html">404</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+              <li><a href="commingsoon.html">Comming Soon</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="contactus.html" class="nav-link-custom">Contact Us</a>
+            </li>
+          </ul>
+
+          <div class="nav-actions desktop-actions">
+            <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode">
+              <span class="mode-icon">🌙</span>
+            </button>
+            <a href="login.html">
+              <button class="btn-register btn-animated" type="button">Login</button>
+            </a>
+          </div>
+
+          <button class="menu-toggle" type="button" aria-label="Toggle menu">☰</button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="service-detail-hero">
+          <h1>Property Search & Selection Service</h1>
+          <p>Find your perfect home with our advanced property matching system and personalized search assistance tailored to your specific needs and preferences.</p>
+        </section>
+
+        <div class="service-detail-container">
+          <div class="service-detail-content">
+            <div class="service-main-content">
+              <div class="service-feature-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+              
+              <div class="service-description-section">
+                <h2>Service Overview</h2>
+                <p>Our Property Search & Selection service is designed to save you time and effort while ensuring you find the perfect property that matches all your requirements. We combine advanced technology with expert human insight to create a personalized property search experience.</p>
+                <p>With access to exclusive listings and deep market knowledge, our team will identify properties that not only meet your criteria but also represent excellent value and investment potential. We go beyond basic search parameters to consider lifestyle factors, future growth potential, and hidden opportunities.</p>
+              </div>
+
+              
+            </div>
+
+            <div class="service-sidebar">
+              <div class="service-info-card">
+                <div class="service-icon-large">
+                  <i class="fas fa-search"></i>
+                </div>
+                <h3>Property Search Service</h3>
+                <div class="service-price">$2,499<span>/package</span></div>
+                <p>Complete property search solution including 10+ property viewings and detailed analysis reports.</p>
+              </div>
+
+              <div class="service-details-list">
+                <div class="detail-item">
+                  <span class="detail-label">Service Duration</span>
+                  <span class="detail-value">60 Days</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Properties Reviewed</span>
+                  <span class="detail-value">25+</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Property Viewings</span>
+                  <span class="detail-value">10+ Included</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Expert Consultation</span>
+                  <span class="detail-value">5 Sessions</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Support</span>
+                  <span class="detail-value">24/7 Priority</span>
+                </div>
+              </div>
+
+              <div class="sidebar-actions">
+                <a href="services.html"><button class="btn-register btn-animated">Start Service Now</button></a>
+              </div>
+            </div>
+          </div>
+
+          <section class="service-faq">
+            <div class="section-header">
+              <h2>Frequently Asked Questions</h2>
+              <p>Find answers to common questions about our Property Search service</p>
+            </div>
+            
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>How many properties will I see with this service?</span>
+                <span class="faq-toggle">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>Our basic package includes review of 25+ properties and physical viewings of 10 selected properties. Premium packages offer unlimited property reviews and viewings until you find your perfect match.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>What areas do you cover?</span>
+                <span class="faq-toggle">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>We cover all major metropolitan areas and suburbs nationwide. Our network extends to 50+ cities with local experts in each region to provide you with the best local knowledge and access to exclusive listings.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>How long does the property search process take?</span>
+                <span class="faq-toggle">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>The standard service duration is 60 days, but most clients find their ideal property within 30-45 days. We work according to your timeline and can expedite the search process if needed.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>Do you offer virtual tours?</span>
+                <span class="faq-toggle">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>Yes, we provide high-quality virtual tours for all shortlisted properties. This allows you to narrow down your choices before scheduling physical visits, saving you time and travel expenses.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <span>What happens if I don't find a property during the service period?</span>
+                <span class="faq-toggle">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>If you don't find a suitable property during the initial service period, we offer a 50% discount on extending the service. Our goal is to ensure you find your perfect home, and we continue working with you until you do.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="service-cta">
+            <h2>Ready to Find Your Dream Property?</h2>
+            <p>Start your property search journey with our expert team today. We'll help you find the perfect home that meets all your requirements and exceeds your expectations.</p>
+            <div class="cta-buttons">
+              <a href="services.html"><button class="btn-register btn-animated">Start Service Now</button></a>
+            </div>
+          </section>
+
+          <section class="related-services">
+            <div class="section-header">
+              <h2>Related Services</h2>
+              <p>Explore other services that complement your property search journey</p>
+            </div>
+            
+            <div class="related-services-grid">
+              <div class="related-service-card">
+                <div class="related-service-image" style="background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="related-service-content">
+                  <h3>Buying Assistance</h3>
+                  <p>Complete support throughout the buying process including negotiation, documentation, and closing procedures.</p>
+                  <a href="index.html"><button class="btn-register btn-animated">Learn More</button></a>
+                </div>
+              </div>
+
+              <div class="related-service-card">
+                <div class="related-service-image" style="background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="related-service-content">
+                  <h3>Legal & Documentation</h3>
+                  <p>Expert legal assistance for all property transactions and documentation requirements with certified.</p>
+                  <a href="index.html"><button class="btn-register btn-animated">Learn More</button></a>
+                </div>
+              </div>
+
+              <div class="related-service-card">
+                <div class="related-service-image" style="background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="related-service-content">
+                  <h3>Investment Advisory</h3>
+                  <p>Strategic property investment guidance to maximize your returns and build a profitable real estate portfolio.</p>
+                  <a href="index.html"><button class="btn-register btn-animated">Learn More</button></a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          
+        </div>
+      </main>
+
+      <footer class="site-footer" id="contact">
+        <div class="footer-content">
+          <div class="footer-column footer-brand-column">
+            <div class="footer-brand">
+              <div class="footer-brand-text">
+                <h3>Compass Housing Society</h3>
+                <p>Your trusted partner in real estate. Finding homes that become memories.</p>
+              </div>
+              
+              <div class="footer-social-icons">
+                <a href="https://www.facebook.com/" class="footer-social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com/" class="footer-social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" class="footer-social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" class="footer-social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="aboutus.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+              <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+              <li><a href="contactus.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Our Services</h4>
+            <ul class="footer-links">
+              <li><a href="servicedetails.html"><i class="fas fa-home"></i> Residential Sales</a></li>
+              <li><a href="servicedetails.html"><i class="fas fa-building"></i> Commercial Leasing</a></li>
+              <li><a href="servicedetails.html"><i class="fas fa-chart-line"></i> Investment Properties</a></li>
+              <li><a href="servicedetails.html"><i class="fas fa-search-dollar"></i> Property Valuation</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© Copyright Compass Housing Society 2024. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const body = document.body;
+      const modeToggles = document.querySelectorAll(".mode-toggle");
+      const modeIcons = document.querySelectorAll(".mode-icon");
+      const storedTheme = localStorage.getItem("compass-theme");
+
+      if (storedTheme === "dark") {
+        body.classList.add("dark-mode");
+        modeIcons.forEach(icon => icon.textContent = "☀️");
+      } else {
+        modeIcons.forEach(icon => icon.textContent = "🌙");
+      }
+
+      modeToggles.forEach(toggle => {
+        toggle.addEventListener("click", function () {
+          const isDark = body.classList.toggle("dark-mode");
+          modeIcons.forEach(icon => icon.textContent = isDark ? "☀️" : "🌙");
+          localStorage.setItem("compass-theme", isDark ? "dark" : "light");
+        });
+      });
+
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navMenu = document.querySelector(".nav-menu");
+
+      function closeMenu() {
+        if (navMenu) navMenu.classList.remove("nav-open");
+      }
+
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", function () {
+          navMenu.classList.toggle("nav-open");
+        });
+
+        document.addEventListener('click', function(event) {
+          const isClickInsideMenu = navMenu.contains(event.target);
+          const isClickOnToggle = menuToggle.contains(event.target);
+          const isClickOnMobileActions = document.querySelector('.mobile-actions').contains(event.target);
+          
+          if (window.innerWidth <= 1030 && !isClickInsideMenu && !isClickOnToggle && !isClickOnMobileActions && navMenu.classList.contains('nav-open')) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' && window.innerWidth <= 1030 && navMenu.classList.contains('nav-open')) {
+            closeMenu();
+          }
+        });
+      }
+
+      const dropdownItems = document.querySelectorAll(".nav-item.dropdown > .nav-link-custom");
+
+      dropdownItems.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const parent = this.parentElement;
+
+          document.querySelectorAll(".nav-item.dropdown.open").forEach(item => {
+            if (item !== parent) {
+              item.classList.remove("open");
+            }
+          });
+
+          parent.classList.toggle("open");
+        });
+      });
+
+      const normalLinks = document.querySelectorAll(".nav-item:not(.dropdown) .nav-link-custom, .nav-item:not(.dropdown) a");
+
+      normalLinks.forEach(l => {
+        l.addEventListener("click", function () {
+          if (window.innerWidth <= 1030) {
+            closeMenu();
+          }
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 1030) {
+          closeMenu();
+        }
+      });
+
+      const faqQuestions = document.querySelectorAll('.faq-question');
+
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          const answer = this.nextElementSibling;
+          const toggle = this.querySelector('.faq-toggle');
+          
+          answer.classList.toggle('active');
+          toggle.classList.toggle('active');
+          toggle.textContent = toggle.classList.contains('active') ? '−' : '+';
+        });
+      });
+
+      const relatedCards = document.querySelectorAll('.related-service-card');
+      relatedCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          if (!e.target.closest('.btn-register')) {
+            const serviceTitle = this.querySelector('h3').textContent;
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

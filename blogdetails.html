@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head:
+  <meta charset="UTF-8" />
+  <title>How to Choose the Perfect Neighborhood | Compass Housing Society</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #898DF0;
+      --light: #F3F3FA;
+      --accent: #FCD980;
+      --dark: #000000;
+      --dark-bg: #121212;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Merriweather', serif;
+      color: var(--dark);
+      background-color: var(--light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    h1 { font-size: 46px; line-height: 1.2; }
+    h2 { font-size: 36px; line-height: 1.3; }
+    h3 { font-size: 24px; line-height: 1.4; }
+    h4, h5, h6 { font-size: 20px; line-height: 1.4; }
+    li, span, p { font-size: 18px; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("Images/transparent-logo.jpeg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 570px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrapper {
+      max-width: 1920px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      padding-top: 82px;
+      background-color: var(--light);
+      transition: background-color 0.3s;
+    }
+
+    .content-layer { 
+      position: relative; 
+      z-index: 1;
+      min-height: calc(100vh - 200px);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--primary);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+      transition: background-color 0.3s;
+    }
+
+    .navbar-custom { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 24px; 
+      position: relative;
+      padding: 12px 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--light);
+    }
+
+    .brand img { 
+      width: 58px; 
+      height: 58px; 
+      object-fit: cover; 
+      border-radius: 8px;
+      border: 2px solid var(--light); 
+      opacity: 0.97; 
+      background: transparent; 
+    }
+
+    .nav-menu { 
+      display: flex; 
+      align-items: center; 
+      gap: 24px; 
+      flex: 1; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+    }
+
+    .nav-item { position: relative; }
+    .nav-link-custom {
+      color: var(--light);
+      padding: 4px 0;
+      opacity: 0.9;
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-link-custom::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .nav-link-custom:hover::after { width: 100%; }
+    .dropdown-toggle-custom::after { content: " ▾"; position: static; width: auto; height: auto; background: none; margin-left: 4px; }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 6px);
+      background-color: var(--primary);
+      border-radius: 10px;
+      border: 1px solid rgba(248, 250, 252, 0.12);
+      min-width: 190px;
+      display: none;
+      padding: 6px 0;
+      z-index: 120;
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .dropdown-menu-custom li a {
+      display: block;
+      padding: 8px 18px;
+      color: var(--light);
+      white-space: nowrap;
+      opacity: 0.9;
+      transition: background-color 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+    }
+
+    .dropdown-menu-custom li a:hover { background-color: rgba(243, 243, 250, 0.15); opacity: 1; color: var(--accent); }
+    .nav-item.dropdown.open>.dropdown-menu-custom { display: block; }
+
+    .nav-actions { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      margin-left: auto; 
+    }
+
+    .btn-animated { 
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease; 
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45); 
+    }
+
+    .btn-animated:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7); 
+      filter: brightness(0.96); 
+    }
+
+    .btn-register {
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+    }
+
+    .mode-toggle {
+      border: 1px solid rgba(248, 250, 252, 0.7);
+      border-radius: 999px;
+      padding: 3px 6px;
+      font-size: 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+      color: var(--light);
+      background: transparent;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--light);
+      background: transparent;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--light);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .mobile-actions {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .hero-section {
+      padding: 50px 20px 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, #6a6fd8 100%);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-section h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-section p {
+      font-size: 20px;
+      margin-bottom: 25px;
+      opacity: 0.95;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn {
+      padding: 14px 35px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Merriweather', serif;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .hero-btn-primary {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Blog Details Content */
+    .blog-details-content {
+      padding: 40px 20px 30px;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Main Content Layout */
+    .blog-details-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+
+    /* Article Header */
+    .article-header {
+      margin-bottom: 40px;
+    }
+
+    .article-category {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .article-title {
+      font-size: 36px;
+      color: var(--dark);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #666;
+      font-size: 16px;
+    }
+
+    .meta-item i {
+      color: var(--primary);
+    }
+
+    .author-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      background: rgba(137, 141, 240, 0.1);
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    .author-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+    }
+
+    .author-details h4 {
+      color: var(--dark);
+      margin-bottom: 5px;
+    }
+
+    .author-details p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+
+    /* Featured Image */
+    .featured-image {
+      width: 100%;
+      height: 450px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .featured-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Article Content */
+    .article-content {
+      margin-bottom: 40px;
+    }
+
+    .content-section {
+      margin-bottom: 40px;
+    }
+
+    .content-section h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(137, 141, 240, 0.2);
+    }
+
+    .content-section p {
+      margin-bottom: 20px;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .highlight-box {
+      background: rgba(137, 141, 240, 0.1);
+      border-left: 4px solid var(--primary);
+      padding: 25px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      font-style: italic;
+      color: #333;
+    }
+
+    /* Article Footer */
+    .article-footer {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .tags-section {
+      margin-bottom: 30px;
+    }
+
+    .tags-section h3 {
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background: var(--accent);
+      color: var(--dark);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 120px;
+      height: fit-content;
+    }
+
+    .sidebar-widget {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .widget-title {
+      font-size: 20px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(137, 141, 240, 0.2);
+    }
+
+    /* Search Widget */
+    .search-widget form {
+      display: flex;
+      gap: 10px;
+      position: relative;
+      flex-wrap: wrap;
+    }
+    
+    .search-input-wrapper {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 18px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      font-family: 'Merriweather', serif;
+      font-size: 15px;
+    }
+
+    .search-btn {
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    /* Error Messages - Fixed Overlap */
+    .error-message {
+      color: #dc3545;
+      font-size: 13px;
+      margin-top: 8px;
+      display: none;
+      width: 100%;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    
+    .input-error {
+      border-color: #dc3545 !important;
+    }
+
+    /* Newsletter Widget - Fixed spacing to prevent overlap */
+    .newsletter-widget p {
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .input-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .newsletter-input {
+      width: 100%;
+      padding: 12px 18px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      font-family: 'Merriweather', serif;
+      font-size: 15px;
+      transition: border-color 0.2s;
+    }
+    
+    .newsletter-btn {
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 4px;
+    }
+
+    .newsletter-btn:hover {
+      background: #e6c868;
+    }
+
+    /* Categories Widget */
+    .categories-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .categories-list li {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .categories-list li:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .categories-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #444;
+      transition: all 0.3s ease;
+    }
+
+    .categories-list a:hover {
+      color: var(--primary);
+      padding-left: 10px;
+    }
+
+    .category-count {
+      background: var(--light);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Recent Posts Widget */
+    .recent-post {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+
+    .recent-post:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .recent-post-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .recent-post-content h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .recent-post-content p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    /* Related Articles */
+    .related-articles {
+      padding: 40px 20px 30px;
+      margin-bottom: 20px;
+    }
+
+    .related-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .related-header h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .related-header p {
+      color: #666;
+      font-size: 18px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .related-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .related-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .related-img {
+      height: 200px;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .related-category {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--accent);
+      color: var(--dark);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .related-content {
+      padding: 25px;
+    }
+
+    .related-title {
+      font-size: 18px;
+      color: var(--dark);
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .related-meta {
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--primary);
+      color: var(--light);
+      font-size: 14px;
+      width: 100%;
+      transition: background-color 0.3s;
+      padding: 30px 0 20px;
+      min-height: 180px;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 40px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 15px;
+    }
+
+    .footer-brand-column {
+      flex: 1.5;
+      min-width: 300px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .footer-brand-text h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--light);
+    }
+
+    .footer-brand-text p {
+      font-size: 15px;
+      opacity: 0.9;
+      max-width: 350px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .footer-social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .footer-social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      font-size: 18px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-social-icon:hover {
+      background: var(--accent);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    .footer-column h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--light);
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links li a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      font-size: 15px;
+    }
+
+    .footer-links li a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .footer-links li i {
+      margin-right: 8px;
+      color: var(--accent);
+      width: 16px;
+      text-align: center;
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.8;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      width: 100%;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: var(--dark-bg);
+      color: #ffffff;
+    }
+
+    body.dark-mode .page-wrapper {
+      background-color: var(--dark-bg);
+    }
+
+    body.dark-mode header,
+    body.dark-mode .site-footer {
+      background-color: var(--dark-bg);
+    }
+
+    body.dark-mode .nav-menu {
+      background: var(--dark-bg);
+    }
+
+    body.dark-mode .dropdown-menu-custom {
+      background-color: var(--dark-bg);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-mode .brand img {
+      border-color: #ffffff;
+    }
+
+    body.dark-mode .mode-toggle {
+      border-color: rgba(255, 255, 255, 0.7);
+      color: #ffffff;
+    }
+
+    body.dark-mode .brand {
+      color: #ffffff;
+    }
+
+    body.dark-mode .nav-link-custom {
+      color: #ffffff;
+    }
+
+    body.dark-mode .dropdown-menu-custom li a {
+      color: #ffffff;
+    }
+
+    body.dark-mode .hero-section {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+
+    body.dark-mode .article-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .author-info {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark-mode .author-details h4 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .author-details p {
+      color: #cccccc;
+    }
+
+    body.dark-mode .article-meta {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-mode .meta-item {
+      color: #cccccc;
+    }
+
+    body.dark-mode .content-section h2 {
+      color: #ffffff;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-mode .content-section p {
+      color: #ffffff;
+    }
+
+    body.dark-mode .highlight-box {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark-mode .highlight-box p {
+      color: #ffffff;
+    }
+
+    body.dark-mode .article-footer {
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-mode .tags-section h3 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .sidebar-widget {
+      background: #2a2a2a;
+      color: #ffffff;
+    }
+
+    body.dark-mode .widget-title {
+      color: #ffffff;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-mode .search-input {
+      background: #1a1a1a;
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    body.dark-mode .categories-list a {
+      color: #ffffff;
+    }
+
+    body.dark-mode .categories-list a:hover {
+      color: var(--accent);
+    }
+
+    body.dark-mode .category-count {
+      background: #1a1a1a;
+      color: #ffffff;
+    }
+
+    body.dark-mode .recent-post-content h4 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .recent-post-content p {
+      color: #ffffff;
+    }
+
+    body.dark-mode .newsletter-input {
+      background: #1a1a1a;
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    body.dark-mode .related-card {
+      background: #2a2a2a;
+      color: #ffffff;
+    }
+
+    body.dark-mode .related-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .related-meta {
+      color: #ffffff;
+    }
+
+    body.dark-mode .error-message {
+      color: #ff6b6b;
+    }
+
+    body.dark-mode .related-header p,
+    body.dark-mode .footer-brand-text p {
+      color: #ffffff;
+    }
+
+    body.dark-mode .footer-links li a,
+    body.dark-mode .footer-contact-info li {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    body.dark-mode .footer-links li a:hover {
+      color: var(--accent);
+    }
+
+    body.dark-mode .tag {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .blog-details-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .sidebar {
+        position: static;
+      }
+      .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 1030px) {
+      .navbar-custom { padding: 10px 16px; gap: 10px; justify-content: space-between; flex-wrap: wrap; }
+      .brand { order: 1; flex: 1; }
+      .nav-actions.desktop-actions { display: none; }
+      .mobile-actions { display: flex; order: 2; }
+      .menu-toggle { display: inline-flex; order: 3; }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: auto;
+        max-height: 90vh;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background: var(--primary);
+        padding: 20px;
+        border-radius: 0 0 0 16px;
+        box-shadow: -12px 0 30px rgba(0, 0, 0, 0.85);
+        z-index: 110;
+        gap: 12px;
+        transition: right 0.3s ease;
+        border: 1px solid rgba(248, 250, 252, 0.6);
+        overflow-y: auto;
+        margin-top: 0;
+      }
+      body.dark-mode .nav-menu { background: var(--dark-bg); }
+      .nav-menu.nav-open { right: 0; }
+      .nav-item { width: 100%; }
+      .nav-link-custom { width: 100%; padding: 10px 0; }
+      .dropdown-menu-custom { 
+        position: static; 
+        margin-top: 4px; 
+        background: rgba(255, 255, 255, 0.05); 
+        border-radius: 8px; 
+        border: none; 
+        box-shadow: none; 
+        padding: 0 0 4px 10px; 
+        display: none;
+      }
+      body.dark-mode .dropdown-menu-custom { background: rgba(255, 255, 255, 0.05); }
+      .dropdown-menu-custom li a { padding: 8px 0; font-size: 15px; opacity: 0.85; }
+      .nav-item.dropdown.open>.dropdown-menu-custom { display: block; }
+      .hero-section { padding: 40px 20px 30px; margin-bottom: 15px; }
+      .hero-section h1 { font-size: 34px; }
+      .featured-image { height: 350px; }
+    }
+
+    @media (max-width: 768px) {
+      .related-grid { grid-template-columns: 1fr; }
+      .article-title { font-size: 28px; }
+      .featured-image { height: 250px; }
+      .footer-content { flex-direction: column; gap: 30px; }
+      .footer-column, .footer-brand-column { min-width: 100%; text-align: center; }
+      .footer-brand { align-items: center; text-align: center; }
+      .footer-brand-text p { max-width: 100%; margin: 0 auto 20px; }
+      .footer-social-icons { justify-content: center; }
+      .article-meta { flex-direction: column; gap: 15px; align-items: flex-start; }
+      .author-info { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 576px) {
+      .page-wrapper { padding-top: 60px; }
+      .brand span { font-size: 14px; }
+      .brand img { width: 40px; height: 40px; }
+      .hero-section h1 { font-size: 28px; }
+      .article-title { font-size: 24px; }
+      .content-section h2 { font-size: 22px; }
+      .sidebar-widget { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="content-layer">
+      <header>
+        <nav class="navbar-custom">
+          <div class="brand">
+            <img src="Images/logo.jpeg" alt="Compass Housing Society Logo">
+            <span>Compass Housing<br> Society</span>
+          </div>
+
+          <div class="mobile-actions">
+            <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode">
+              <span class="mode-icon">🌙</span>
+            </button>
+            <a href="login.html">
+              <button class="btn-register btn-animated" type="button">Login</button>
+            </a>
+          </div>
+
+          <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html" class="nav-link-custom">Home 1</a></li>
+            <li class="nav-item"><a href="home2.html" class="nav-link-custom">Home 2</a></li>
+            <li class="nav-item dropdown">
+              <span class="nav-link-custom dropdown-toggle-custom">Services List</span>
+              <ul class="dropdown-menu-custom">
+                <li><a href="services.html">Service</a></li>
+                <li><a href="servicedetails.html">Service Details</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <span class="nav-link-custom dropdown-toggle-custom">Blog Design</span>
+              <ul class="dropdown-menu-custom">
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="blogdetails.html">Blog Details</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <span class="nav-link-custom dropdown-toggle-custom">About Us</span>
+              <ul class="dropdown-menu-custom">
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="additionalpage.html">404</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="commingsoon.html">Comming Soon</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="contactus.html" class="nav-link-custom">Contact Us</a></li>
+          </ul>
+
+          <div class="nav-actions desktop-actions">
+            <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode">
+              <span class="mode-icon">🌙</span>
+            </button>
+            <a href="login.html">
+              <button class="btn-register btn-animated" type="button">Login</button>
+            </a>
+          </div>
+
+          <button class="menu-toggle" type="button" aria-label="Toggle menu">☰</button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero-section">
+          <div class="hero-content">
+            <h1>How to Choose the Perfect Neighborhood for Your Family</h1>
+            <p>Discover the key factors to consider when selecting a neighborhood that fits your family's lifestyle, budget, and future needs.</p>
+            <div class="hero-buttons">
+              <a href="#article-start" class="hero-btn hero-btn-primary">Read Article</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="blog-details-content" id="article-start">
+          <div class="container">
+            <div class="blog-details-wrapper">
+              <div class="article-content">
+                <div class="article-header">
+                  <span class="article-category">Buying Guide</span>
+                  <h1 class="article-title">How to Choose the Perfect Neighborhood for Your Family</h1>
+                  <div class="article-meta">
+                    <div class="meta-item"><i class="far fa-calendar"></i><span>March 15, 2024</span></div>
+                    <div class="meta-item"><i class="far fa-clock"></i><span>8 min read</span></div>
+                    <div class="meta-item"><i class="far fa-eye"></i><span>1,245 views</span></div>
+                  </div>
+                  <div class="author-info">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sarah Johnson" class="author-avatar">
+                    <div class="author-details">
+                      <h4>Sarah Johnson</h4>
+                      <p>Lead Real Estate Agent | 15+ years experience</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="featured-image">
+                  <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Beautiful Neighborhood">
+                </div>
+
+                <div class="content-section">
+                  <h2>Introduction</h2>
+                  <p>Choosing the right neighborhood is one of the most critical decisions you'll make when buying a home. It's not just about the house itself; it's about the community, amenities, schools, and overall environment where your family will grow and thrive.</p>
+                  <p>In this comprehensive guide, we'll walk you through the essential factors to consider when evaluating neighborhoods, helping you make an informed decision that aligns with your family's needs and lifestyle.</p>
+                  <div class="highlight-box">
+                    <p><strong>Key Insight:</strong> Studies show that families who carefully research neighborhoods before buying report 40% higher satisfaction rates with their home purchase decision.</p>
+                  </div>
+                </div>
+
+                <div class="article-footer">
+                  <div class="tags-section">
+                    <h3>Related Topics</h3>
+                    <div class="tag-list">
+                      <span class="tag">Home Buying</span>
+                      <span class="tag">Family Living</span>
+                      <span class="tag">Real Estate</span>
+                      <span class="tag">Neighborhood Guide</span>
+                      <span class="tag">Property Search</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sidebar">
+                <div class="sidebar-widget search-widget">
+                  <h3 class="widget-title">Search Blog</h3>
+                  <form id="searchForm">
+                    <div style="flex:1; display: flex; gap: 10px; width: 100%;">
+                      <input type="text" class="search-input" id="searchInput" placeholder="Search articles...">
+                      <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="error-message" id="searchError">Please enter a search term</div>
+                  </form>
+                </div>
+
+                <div class="sidebar-widget categories-widget">
+                  <h3 class="widget-title">Categories</h3>
+                  <ul class="categories-list">
+                    <li><a href="#">Buying Guide <span class="category-count">24</span></a></li>
+                    <li><a href="#">Market Trends <span class="category-count">18</span></a></li>
+                    <li><a href="#">Investment Tips <span class="category-count">22</span></a></li>
+                    <li><a href="#">Home Improvement <span class="category-count">15</span></a></li>
+                    <li><a href="#">Legal Tips <span class="category-count">12</span></a></li>
+                    <li><a href="#">Financing <span class="category-count">16</span></a></li>
+                  </ul>
+                </div>
+
+                <div class="sidebar-widget recent-posts-widget">
+                  <h3 class="widget-title">Recent Posts</h3>
+                  <div class="recent-post">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Investment Strategies" class="recent-post-img">
+                    <div class="recent-post-content">
+                      <h4>Top 5 Real Estate Investment Strategies for 2024</h4>
+                      <p>Mar 10, 2024</p>
+                    </div>
+                  </div>
+                  <div class="recent-post">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Market Predictions" class="recent-post-img">
+                    <div class="recent-post-content">
+                      <h4>2024 Housing Market Predictions & Analysis</h4>
+                      <p>Mar 5, 2024</p>
+                    </div>
+                  </div>
+                  <div class="recent-post">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Home Renovation" class="recent-post-img">
+                    <div class="recent-post-content">
+                      <h4>Home Renovation Ideas That Add Maximum Value</h4>
+                      <p>Feb 28, 2024</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sidebar-widget newsletter-widget">
+                  <h3 class="widget-title">Stay Updated</h3>
+                  <p>Subscribe to our newsletter for the latest real estate insights</p>
+                  <form class="newsletter-form" id="newsletterForm">
+                    <div class="input-group">
+                      <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="e.g., username@domain_name.com" required>
+                      <div class="error-message" id="emailError"></div>
+                    </div>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="related-articles">
+          <div class="related-header">
+            <h2>Related Articles</h2>
+            <p>Continue reading with these related topics</p>
+          </div>
+          <div class="container">
+            <div class="related-grid">
+              <div class="related-card">
+                <div class="related-img" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                  <div class="related-category">Investment</div>
+                </div>
+                <div class="related-content">
+                  <h3 class="related-title">Top 5 Real Estate Investment Strategies for 2024</h3>
+                  <div class="related-meta"><span>Mar 10, 2024</span><span>8 min read</span></div>
+                </div>
+              </div>
+              <div class="related-card">
+                <div class="related-img" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80')">
+                  <div class="related-category">Financing</div>
+                </div>
+                <div class="related-content">
+                  <h3 class="related-title">Understanding Mortgage Options for First-Time Buyers</h3>
+                  <div class="related-meta"><span>Feb 22, 2024</span><span>10 min read</span></div>
+                </div>
+              </div>
+              <div class="related-card">
+                <div class="related-img" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                  <div class="related-category">Home Improvement</div>
+                </div>
+                <div class="related-content">
+                  <h3 class="related-title">Home Renovation Ideas That Add Maximum Value</h3>
+                  <div class="related-meta"><span>Feb 28, 2024</span><span>7 min read</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer" id="contact">
+        <div class="footer-content">
+          <div class="footer-column footer-brand-column">
+            <div class="footer-brand">
+              <div class="footer-brand-text">
+                <h3>Compass Housing Society</h3>
+                <p>Your trusted partner in real estate. Finding homes that become memories.</p>
+              </div>
+              <div class="footer-social-icons">
+                <a href="https://www.facebook.com/" class="footer-social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com/" class="footer-social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" class="footer-social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" class="footer-social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="aboutus.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+              <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+              <li><a href="contactus.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Blog Categories</h4>
+            <ul class="footer-links">
+              <li><a href="blog.html"><i class="fas fa-home"></i> Buying Guide</a></li>
+              <li><a href="blog.html"><i class="fas fa-chart-line"></i> Market Trends</a></li>
+              <li><a href="blog.html"><i class="fas fa-hand-holding-usd"></i> Investment Tips</a></li>
+              <li><a href="blog.html"><i class="fas fa-tools"></i> Home Improvement</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© Copyright Compass Housing Society 2024. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const body = document.body;
+      const modeToggles = document.querySelectorAll(".mode-toggle");
+      const modeIcons = document.querySelectorAll(".mode-icon");
+      const storedTheme = localStorage.getItem("compass-theme");
+
+      if (storedTheme === "dark") {
+        body.classList.add("dark-mode");
+        modeIcons.forEach(icon => icon.textContent = "☀️");
+      } else {
+        modeIcons.forEach(icon => icon.textContent = "🌙");
+      }
+
+      modeToggles.forEach(toggle => {
+        toggle.addEventListener("click", function () {
+          const isDark = body.classList.toggle("dark-mode");
+          modeIcons.forEach(icon => icon.textContent = isDark ? "☀️" : "🌙");
+          localStorage.setItem("compass-theme", isDark ? "dark" : "light");
+        });
+      });
+
+      // Mobile menu toggle
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navMenu = document.querySelector(".nav-menu");
+
+      function closeMenu() {
+        if (navMenu) navMenu.classList.remove("nav-open");
+      }
+
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", function () {
+          navMenu.classList.toggle("nav-open");
+        });
+
+        document.addEventListener('click', function(event) {
+          const isClickInsideMenu = navMenu.contains(event.target);
+          const isClickOnToggle = menuToggle.contains(event.target);
+          const isClickOnMobileActions = document.querySelector('.mobile-actions')?.contains(event.target);
+          
+          if (window.innerWidth <= 1030 && !isClickInsideMenu && !isClickOnToggle && !isClickOnMobileActions && navMenu.classList.contains('nav-open')) {
+            closeMenu();
+          }
+        });
+      }
+
+      // Dropdown behavior
+      const dropdownItems = document.querySelectorAll(".nav-item.dropdown > .nav-link-custom");
+      dropdownItems.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const parent = this.parentElement;
+          document.querySelectorAll(".nav-item.dropdown.open").forEach(item => {
+            if (item !== parent) item.classList.remove("open");
+          });
+          parent.classList.toggle("open");
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 1030) closeMenu();
+      });
+
+      // STRICT EMAIL VALIDATION - NO MULTIPLE DOTS
+      function isValidEmail(email) {
+        if (!email || email.trim() !== email) return false;
+        const emailStr = email.trim();
+        if (emailStr.includes('..')) return false;
+        const atIndex = emailStr.lastIndexOf('@');
+        if (atIndex === -1 || atIndex === 0 || atIndex === emailStr.length - 1) return false;
+        const localPart = emailStr.substring(0, atIndex);
+        const domainPart = emailStr.substring(atIndex + 1);
+        if (localPart.length === 0 || domainPart.length === 0) return false;
+        if (localPart.startsWith('.') || localPart.endsWith('.')) return false;
+        const localRegex = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]*[a-zA-Z0-9]$|^[a-zA-Z0-9]$/;
+        if (!localRegex.test(localPart)) return false;
+        if (domainPart.includes('..')) return false;
+        if (domainPart.startsWith('.') || domainPart.endsWith('.')) return false;
+        const domainLabels = domainPart.split('.');
+        if (domainLabels.length < 2) return false;
+        const tld = domainLabels[domainLabels.length - 1].toLowerCase();
+        if (!['com', 'in', 'org', 'net'].includes(tld)) return false;
+        for (let i = 0; i < domainLabels.length - 1; i++) {
+          const label = domainLabels[i];
+          if (label.length === 0) return false;
+          const labelRegex = /^[a-zA-Z0-9][a-zA-Z0-9_-]*[a-zA-Z0-9]$|^[a-zA-Z0-9]$/;
+          if (!labelRegex.test(label)) return false;
+        }
+        const tldRegex = /^[a-zA-Z]+$/;
+        if (!tldRegex.test(domainLabels[domainLabels.length - 1])) return false;
+        return true;
+      }
+
+      function showError(inputElement, errorElement, message) {
+        inputElement.classList.add('input-error');
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+      }
+
+      function hideError(inputElement, errorElement) {
+        inputElement.classList.remove('input-error');
+        errorElement.style.display = 'none';
+      }
+
+      // Search Form Validation
+      const searchForm = document.getElementById('searchForm');
+      const searchInput = document.getElementById('searchInput');
+      const searchError = document.getElementById('searchError');
+
+      if (searchForm) {
+        searchForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const query = searchInput.value.trim();
+          if (!query) {
+            showError(searchInput, searchError, 'Please enter a search term');
+            return;
+          }
+          if (query.replace(/\s/g, '').length === 0) {
+            showError(searchInput, searchError, 'Search term cannot be only spaces');
+            return;
+          }
+          hideError(searchInput, searchError);
+          alert(`Searching for: "${query}"\nThis would redirect to search results page.`);
+          this.reset();
+        });
+        searchInput.addEventListener('input', function() { hideError(this, searchError); });
+      }
+
+      // Newsletter Form - Fixed overlapping: error placed inside input-group, proper spacing
+      const newsletterForm = document.getElementById('newsletterForm');
+      const newsletterEmail = document.getElementById('newsletterEmail');
+      const emailError = document.getElementById('emailError');
+
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = newsletterEmail.value.trim();
+          
+          if (!email) {
+            showError(newsletterEmail, emailError, 'Please enter your email address');
+            return;
+          }
+          
+          if (!isValidEmail(email)) {
+            showError(newsletterEmail, emailError, 'Invalid email format. Allowed: user@domain.com, no consecutive dots (..). TLD: .com, .in, .org, .net only.');
+            return;
+          }
+          
+          hideError(newsletterEmail, emailError);
+          alert(`Thank you for subscribing with email: ${email}\nYou'll receive our next newsletter soon!`);
+          this.reset();
+        });
+        
+        newsletterEmail.addEventListener('input', function() { 
+          if (this.value.includes(' ')) this.value = this.value.replace(/\s+/g, '');
+          hideError(this, emailError); 
+        });
+      }
+
+      // Tag clicks
+      const tags = document.querySelectorAll('.tag');
+      tags.forEach(tag => {
+        tag.addEventListener('click', function() {
+          alert(`Loading articles tagged: ${this.textContent}`);
+        });
+      });
+
+      // Category links
+      const categoryLinks = document.querySelectorAll('.categories-list a');
+      categoryLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const category = this.textContent.split(' ')[0];
+          alert(`Loading articles from category: ${category}`);
+        });
+      });
+
+      // Recent posts
+      const recentPosts = document.querySelectorAll('.recent-post');
+      recentPosts.forEach(post => {
+        post.addEventListener('click', function() {
+          const title = this.querySelector('h4').textContent;
+          alert(`Opening article: "${title}"`);
+        });
+      });
+
+      // Related cards
+      const relatedCards = document.querySelectorAll('.related-card');
+      relatedCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const title = this.querySelector('.related-title').textContent;
+          alert(`Opening related article: "${title}"`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
