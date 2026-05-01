@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Compass Housing Society - Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #898DF0;
+            --light: #F3F3FA;
+            --accent: #FCD980;
+            --dark: #000000;
+            --dark-bg: #121212;
+            --card-dark: #1E1E1E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            color: var(--dark);
+            background-color: var(--light);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1 { font-size: 46px; line-height: 1.2; }
+        h2 { font-size: 36px; line-height: 1.3; }
+        h3 { font-size: 24px; line-height: 1.4; }
+        h4, h5, h6 { font-size: 20px; line-height: 1.4; }
+        li, span, p { font-size: 18px; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("Images/transparent-logo.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 570px auto;
+            opacity: 0.10;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page-wrapper {
+            max-width: 1920px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            padding-top: 82px;
+            background-color: var(--light);
+            transition: background-color 0.3s;
+        }
+
+        .content-layer { 
+            position: relative; 
+            z-index: 1;
+            min-height: calc(100vh - 200px);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: var(--primary);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+            transition: background-color 0.3s;
+        }
+
+        .navbar-custom { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 24px; 
+            position: relative;
+            padding: 12px 40px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: var(--light);
+        }
+
+        .brand img { 
+            width: 58px; 
+            height: 58px; 
+            object-fit: cover; 
+            border-radius: 8px;
+            border: 2px solid var(--light); 
+            opacity: 0.97; 
+            background: transparent; 
+        }
+
+        .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            gap: 24px; 
+            flex: 1; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+        }
+
+        .nav-item { position: relative; }
+        .nav-link-custom {
+            color: var(--light);
+            padding: 4px 0;
+            opacity: 0.9;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            transition: color 0.25s ease, opacity 0.25s ease;
+        }
+
+        .nav-link-custom::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0%;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.25s ease;
+        }
+
+        .nav-link-custom:hover::after { width: 100%; }
+        .dropdown-toggle-custom::after { content: " ▾"; position: static; width: auto; height: auto; background: none; margin-left: 4px; }
+
+        .dropdown-menu-custom {
+            position: absolute;
+            left: 0;
+            top: calc(100% + 6px);
+            background-color: var(--primary);
+            border-radius: 10px;
+            border: 1px solid rgba(248, 250, 252, 0.12);
+            min-width: 190px;
+            display: none;
+            padding: 6px 0;
+            z-index: 120;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .dropdown-menu-custom li a {
+            display: block;
+            padding: 8px 18px;
+            color: var(--light);
+            white-space: nowrap;
+            opacity: 0.9;
+            transition: background-color 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+        }
+
+        .dropdown-menu-custom li a:hover { background-color: rgba(243, 243, 250, 0.15); opacity: 1; color: var(--accent); }
+        .nav-item.dropdown.open>.dropdown-menu-custom { display: block; }
+
+        .nav-actions { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            margin-left: auto; 
+        }
+
+        .btn-animated { 
+            transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease; 
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45); 
+        }
+
+        .btn-animated:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7); 
+            filter: brightness(0.96); 
+        }
+
+        .btn-register {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 999px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            font-family: 'Merriweather', serif;
+            font-size: 16px;
+        }
+
+        .mode-toggle {
+            border: 1px solid rgba(248, 250, 252, 0.7);
+            border-radius: 999px;
+            padding: 3px 6px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+            color: var(--light);
+            background: transparent;
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 1px solid var(--light);
+            background: transparent;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            color: var(--light);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .mobile-actions {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            margin-left: auto;
+        }
+
+        .site-footer {
+            background: var(--primary);
+            color: var(--light);
+            font-size: 14px;
+            width: 100%;
+            transition: background-color 0.3s;
+            padding: 30px 0 20px;
+            min-height: 180px;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            gap: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand-column {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid var(--light);
+        }
+
+        .footer-brand-text h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--light);
+        }
+
+        .footer-brand-text p {
+            font-size: 15px;
+            opacity: 0.9;
+            max-width: 350px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .footer-social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-social-icon:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--light);
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links li a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 15px;
+        }
+
+        .footer-links li a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-links li i {
+            margin-right: 8px;
+            color: var(--accent);
+            width: 16px;
+            text-align: center;
+        }
+
+        .footer-contact-info {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .footer-contact-info li i {
+            margin-right: 12px;
+            color: var(--accent);
+            font-size: 16px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.8;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .gallery-hero {
+            padding: 50px 20px 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, #6a6fd8 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .gallery-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .gallery-hero p {
+            font-size: 20px;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+
+        .gallery-section {
+            padding: 40px 20px 30px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .gallery-header h2 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .gallery-header p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .image-strip-wrapper {
+            margin-top: 24px;
+        }
+
+        .image-strip {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .image-card {
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            width: 280px;
+            border-radius: 14px;
+            background-color: white;
+            color: var(--dark);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-card-body {
+            padding: 10px 14px 12px;
+        }
+
+        .image-card-body h4 {
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .image-card-body p {
+            margin-bottom: 0;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 40px 20px 30px;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            max-width: 520px;
+            margin: 0 auto 20px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .next-page-btn {
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 999px;
+            border: none;
+            font-weight: 700;
+            padding: 12px 30px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Merriweather', serif;
+            font-size: 17px;
+        }
+
+        .next-page-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-section {
+            display: none;
+            text-align: center;
+            padding: 40px 20px 30px;
+            margin-bottom: 20px;
+            background-color: var(--light);
+        }
+
+        .error-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .error-icon {
+            font-size: 80px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .error-title {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .error-btn {
+            padding: 12px 30px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Merriweather', serif;
+            font-size: 16px;
+            border: none;
+        }
+
+        .error-btn-primary {
+            color: var(--dark);
+            background: var(--accent);
+        }
+
+        .error-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .page-wrapper {
+            background-color: var(--dark-bg);
+        }
+
+        body.dark-mode header,
+        body.dark-mode .site-footer {
+            background-color: var(--card-dark);
+        }
+
+        body.dark-mode .nav-menu {
+            background: var(--card-dark);
+        }
+
+        body.dark-mode .dropdown-menu-custom {
+            background-color: var(--card-dark);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .brand img {
+            border-color: #FFFFFF;
+        }
+
+        body.dark-mode .mode-toggle {
+            border-color: rgba(255, 255, 255, 0.7);
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .brand {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .nav-link-custom {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .dropdown-menu-custom li a {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .footer-social-icon {
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        body.dark-mode .footer-social-icon:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        body.dark-mode .gallery-hero {
+            background: linear-gradient(135deg, var(--card-dark) 0%, #2a2a2a 100%);
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .image-card {
+            background: var(--card-dark);
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .image-card-body h4 {
+            color: var(--accent);
+        }
+
+        body.dark-mode .image-card-body p {
+            color: #CCCCCC;
+        }
+
+        body.dark-mode .cta-text {
+            color: #CCCCCC;
+        }
+
+        body.dark-mode .gallery-header p {
+            color: #CCCCCC;
+        }
+
+        body.dark-mode .gallery-header h2 {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .footer-links li a,
+        body.dark-mode .footer-contact-info li {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        body.dark-mode .footer-links li a:hover {
+            color: var(--accent);
+        }
+
+        body.dark-mode .footer-column h4 {
+            color: #FFFFFF;
+        }
+
+        body.dark-mode .footer-brand-text p {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        body.dark-mode .footer-bottom {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        body.dark-mode .error-section {
+            background-color: var(--dark-bg);
+        }
+
+        body.dark-mode .error-title {
+            color: var(--accent);
+        }
+
+        body.dark-mode .error-message {
+            color: #CCCCCC;
+        }
+
+        /* ----- FIXED RESPONSIVE NAVBAR (corrected) ----- */
+        @media (max-width: 1030px) {
+            .navbar-custom { 
+                padding: 10px 16px;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            .brand {
+                order: 1;
+                flex: 0 1 auto;
+            }
+            .nav-actions.desktop-actions {
+                display: none;
+            }
+            .mobile-actions {
+                display: flex;
+                order: 2;
+            }
+            .menu-toggle {
+                display: inline-flex;
+                order: 3;
+                margin-left: 4px;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -320px;
+                width: 280px;
+                height: 100vh;
+                max-height: none;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                background: var(--primary);
+                padding: 80px 20px 30px 24px;
+                border-radius: 0;
+                box-shadow: -12px 0 30px rgba(0, 0, 0, 0.85);
+                z-index: 105;
+                gap: 18px;
+                transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+                border-left: 2px solid var(--accent);
+                overflow-y: auto;
+                margin-top: 0;
+                pointer-events: auto;
+            }
+            body.dark-mode .nav-menu {
+                background: var(--card-dark);
+            }
+            .nav-menu.nav-open { 
+                right: 0; 
+            }
+            .nav-item { 
+                width: 100%; 
+            }
+            .nav-link-custom { 
+                width: 100%; 
+                padding: 10px 0;
+                font-size: 18px;
+                font-weight: 500;
+                display: block;
+            }
+            .dropdown-menu-custom { 
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-top: 8px;
+                margin-left: 12px;
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                border: none;
+                box-shadow: none;
+                padding: 6px 0 6px 12px;
+                display: none;
+                width: calc(100% - 12px);
+            }
+            body.dark-mode .dropdown-menu-custom {
+                background: rgba(255, 255, 255, 0.05);
+            }
+            .dropdown-menu-custom li a { 
+                padding: 8px 0; 
+                font-size: 16px; 
+                opacity: 0.9;
+                white-space: normal;
+            }
+            .nav-item.dropdown.open>.dropdown-menu-custom { display: block; }
+            .dropdown-toggle-custom::after {
+                content: " ▾";
+                float: right;
+                margin-right: 8px;
+            }
+            
+            body.menu-open::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 100;
+                pointer-events: auto;
+            }
+            
+            .site-footer {
+                min-height: auto;
+                padding: 30px 0 15px;
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 30px;
+            }
+            
+            .footer-column {
+                min-width: 200px;
+            }
+            
+            .footer-brand-column {
+                min-width: 100%;
+            }
+            
+            .footer-brand {
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer-brand-text p {
+                max-width: 100%;
+                margin: 0 auto 20px;
+            }
+
+            .gallery-hero {
+                padding: 40px 20px 30px;
+                margin-bottom: 15px;
+            }
+
+            .gallery-hero h1 {
+                font-size: 34px;
+            }
+
+            .gallery-section,
+            .cta-section,
+            .error-section {
+                padding: 30px 20px 20px;
+                margin-bottom: 15px;
+            }
+
+            .image-strip {
+                justify-content: flex-start;
+            }
+
+            .error-title {
+                font-size: 36px;
+            }
+
+            .error-icon {
+                font-size: 60px;
+            }
+        }
+
+        @media (min-width: 1031px) {
+            .nav-actions.desktop-actions {
+                display: flex;
+            }
+            .mobile-actions {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-column,
+            .footer-brand-column {
+                min-width: 100%;
+                text-align: center;
+            }
+            
+            .footer-links li a:hover {
+                transform: none;
+            }
+            
+            .footer-contact-info li {
+                justify-content: center;
+            }
+            
+            .footer-social-icons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-wrapper { padding-top: 72px; }
+            .brand span { font-size: 13px; }
+            .brand img { width: 44px; height: 44px; }
+            .nav-menu {
+                width: 260px;
+                padding: 70px 18px 24px 20px;
+                right: -280px;
+            }
+            .mobile-actions {
+                gap: 8px;
+            }
+            
+            .footer-brand-text h3 {
+                font-size: 22px;
+            }
+            
+            .footer-brand-text p {
+                font-size: 14px;
+            }
+            
+            .footer-social-icons {
+                gap: 10px;
+            }
+            
+            .footer-social-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 15px;
+            }
+            
+            .footer-bottom {
+                font-size: 13px;
+            }
+
+            .gallery-hero h1 {
+                font-size: 28px;
+            }
+
+            .gallery-hero p {
+                font-size: 17px;
+            }
+
+            .gallery-header h2 {
+                font-size: 28px;
+            }
+
+            .image-card {
+                width: 240px;
+            }
+
+            .error-title {
+                font-size: 28px;
+            }
+
+            .error-icon {
+                font-size: 50px;
+            }
+
+            .error-message {
+                font-size: 16px;
+            }
+
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .error-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div class="content-layer">
+            <header>
+                <nav class="navbar-custom">
+                    <div class="brand">
+                        <img src="Images/logo.jpeg" alt="Compass Housing Society Logo">
+                        <span>Compass Housing<br> Society</span>
+                    </div>
+
+                    <div class="mobile-actions">
+                        <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode">
+                            <span class="mode-icon">🌙</span>
+                        </button>
+                        <a href="login.html">
+                            <button class="btn-register btn-animated" type="button">Login</button>
+                        </a>
+                    </div>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link-custom">Home 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="home2.html" class="nav-link-custom">Home 2</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <span class="nav-link-custom dropdown-toggle-custom">Services List</span>
+                            <ul class="dropdown-menu-custom">
+                                <li><a href="services.html">Service</a></li>
+                                <li><a href="servicedetails.html">Service Details</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <span class="nav-link-custom dropdown-toggle-custom">Blog Design</span>
+                            <ul class="dropdown-menu-custom">
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="blogdetails.html">Blog Details</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <span class="nav-link-custom dropdown-toggle-custom">About Us</span>
+                            <ul class="dropdown-menu-custom">
+                            <li><a href="aboutus.html">About Us</a></li>
+              <li><a href="additionalpage.html">404</a></li>
+              <li><a href="pricing.html">Pricing</a></li>
+              <li><a href="commingsoon.html">Comming Soon</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contactus.html" class="nav-link-custom">Contact Us</a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-actions desktop-actions">
+                        <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode">
+                            <span class="mode-icon">🌙</span>
+                        </button>
+                        <a href="login.html">
+                            <button class="btn-register btn-animated" type="button">Login</button>
+                        </a>
+                    </div>
+
+                    <button class="menu-toggle" type="button" aria-label="Toggle menu">☰</button>
+                </nav>
+            </header>
+
+            <main>
+                <section class="gallery-section">
+                    <div class="gallery-header">
+                        <h2>Our Premium Properties</h2>
+                        <p>Explore our exclusive collection of signature residences</p>
+                    </div>
+                    <div class="image-strip-wrapper">
+                        <div class="image-strip">
+                            <article class="image-card">
+                                <img src="https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&w=600&q=80"
+                                    alt="Compass tower elevation">
+                                <div class="image-card-body">
+                                    <h4>Skyline Towers</h4>
+                                    <p>Modern elevations with clean lines and warm lighting.</p>
+                                </div>
+                            </article>
+
+                            <article class="image-card">
+                                <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=600&q=80"
+                                    alt="Community clubhouse night view">
+                                <div class="image-card-body">
+                                    <h4>Clubhouse Views</h4>
+                                    <p>Elegant clubhouses designed for everyday leisure and celebrations.</p>
+                                </div>
+                            </article>
+
+                            <article class="image-card">
+                                <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=600&q=80"
+                                    alt="Apartment living room interior">
+                                <div class="image-card-body">
+                                    <h4>Smart Interiors</h4>
+                                    <p>Compact, well-lit homes that optimise usable space and comfort.</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                <section class="gallery-hero">
+                    <div class="gallery-hero-content">
+                        <h1>Our Gallery</h1>
+                        <p>Explore our exclusive collection of signature residences and community spaces</p>
+                    </div>
+                </section>
+
+                <section class="cta-section">
+                    <p class="cta-text">
+                        Ready to explore the full project experience, amenities, and floor plans?
+                        Move to the next page to dive deeper into Compass Housing Society communities.
+                    </p>
+                    
+                    <button type="button" class="next-page-btn">
+                        Click More
+                    </button>
+                </section>
+
+                <section class="error-section">
+                    <div class="error-content">
+                        <div class="error-icon">🔍</div>
+                        <h2 class="error-title">404 - Page Not Found</h2>
+                        <p class="error-message">
+                            Oops! The page you're looking for seems to have wandered off. 
+                            The detailed project page is currently under construction or may have been moved.
+                            Please try again later or return to our gallery.
+                        </p>
+                        <div class="error-actions">
+                            <a href="index.html"><button class="error-btn error-btn-primary">
+                                🏠 Go to Home
+                            </button></a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="site-footer" id="contact">
+                <div class="footer-content">
+                    <div class="footer-column footer-brand-column">
+                        <div class="footer-brand">
+                            <div class="footer-brand-text">
+                                <h3>Compass Housing Society</h3>
+                                <p>Your trusted partner in real estate. Finding homes that become memories.</p>
+                            </div>
+                            
+                            <div class="footer-social-icons">
+                                <a href="https://www.facebook.com/" class="footer-social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.twitter.com/" class="footer-social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.instagram.com/" class="footer-social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/" class="footer-social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="aboutus.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                            <li><a href="contactus.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Our Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="servicedetails.html"><i class="fas fa-home"></i> Residential Sales</a></li>
+                            <li><a href="servicedetails.html"><i class="fas fa-building"></i> Commercial Leasing</a></li>
+                            <li><a href="servicedetails.html"><i class="fas fa-chart-line"></i> Investment Properties</a></li>
+                            <li><a href="servicedetails.html"><i class="fas fa-search-dollar"></i> Property Valuation</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© Copyright Compass Housing Society 2024. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const body = document.body;
+            const modeToggles = document.querySelectorAll(".mode-toggle");
+            const modeIcons = document.querySelectorAll(".mode-icon");
+            const storedTheme = localStorage.getItem("compass-theme");
+
+            if (storedTheme === "dark") {
+                body.classList.add("dark-mode");
+                modeIcons.forEach(icon => icon.textContent = "☀️");
+            } else {
+                modeIcons.forEach(icon => icon.textContent = "🌙");
+            }
+
+            modeToggles.forEach(toggle => {
+                toggle.addEventListener("click", function () {
+                    const isDark = body.classList.toggle("dark-mode");
+                    modeIcons.forEach(icon => icon.textContent = isDark ? "☀️" : "🌙");
+                    localStorage.setItem("compass-theme", isDark ? "dark" : "light");
+                });
+            });
+
+            const menuToggle = document.querySelector(".menu-toggle");
+            const navMenu = document.querySelector(".nav-menu");
+
+            function closeMenu() {
+                if (navMenu) navMenu.classList.remove("nav-open");
+                body.classList.remove("menu-open");
+            }
+
+            function openMenu() {
+                if (navMenu) navMenu.classList.add("nav-open");
+                body.classList.add("menu-open");
+            }
+
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    if (navMenu.classList.contains("nav-open")) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (window.innerWidth <= 1030 && navMenu.classList.contains('nav-open')) {
+                        const isClickInsideMenu = navMenu.contains(event.target);
+                        const isClickOnToggle = menuToggle.contains(event.target);
+                        const isClickOnMobileActions = document.querySelector('.mobile-actions')?.contains(event.target);
+                        if (!isClickInsideMenu && !isClickOnToggle && !isClickOnMobileActions) {
+                            closeMenu();
+                        }
+                    }
+                });
+
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape' && window.innerWidth <= 1030 && navMenu.classList.contains('nav-open')) {
+                        closeMenu();
+                    }
+                });
+            }
+
+            const dropdownItems = document.querySelectorAll(".nav-item.dropdown > .nav-link-custom");
+            dropdownItems.forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const parent = this.parentElement;
+                    document.querySelectorAll(".nav-item.dropdown.open").forEach(item => {
+                        if (item !== parent) item.classList.remove("open");
+                    });
+                    parent.classList.toggle("open");
+                });
+            });
+
+            const normalLinks = document.querySelectorAll(".nav-item:not(.dropdown) .nav-link-custom, .nav-item:not(.dropdown) a");
+            normalLinks.forEach(l => {
+                l.addEventListener("click", function () {
+                    if (window.innerWidth <= 1030) closeMenu();
+                });
+            });
+
+            window.addEventListener("resize", () => {
+                if (window.innerWidth > 1030) closeMenu();
+            });
+
+            const imageCards = document.querySelectorAll('.image-card');
+            imageCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('h4').textContent;
+                    alert(`Viewing details for: ${title}`);
+                });
+            });
+
+            const nextPageBtn = document.querySelector('.next-page-btn');
+            const errorSection = document.querySelector('.error-section');
+            const ctaSection = document.querySelector('.cta-section');
+
+            if (nextPageBtn && errorSection) {
+                nextPageBtn.addEventListener('click', function() {
+                    errorSection.style.display = 'block';
+                    ctaSection.style.display = 'none';
+                    errorSection.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
