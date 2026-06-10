@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Compass Housing Society - Login & Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #898DF0;
+      --light: #F3F3FA;
+      --accent: #FCD980;
+      --dark: #000000;
+      --dark-bg: #121212;
+      --dark-surface: #1E1E2F;
+      --dark-surface-lighter: #2D2D3F;
+      --dark-text-primary: #E8E8F0;
+      --dark-text-secondary: #B8B8D0;
+      --dark-border: #3A3A4A;
+      --toast-bg-dark: #2A2A3A;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Merriweather', serif;
+      color: var(--dark);
+      background-color: var(--light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Enhanced Toast Notifications */
+    .toast-notification {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      z-index: 9999;
+      min-width: 340px;
+      max-width: 450px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      animation: slideInRight 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transform: translateX(0);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      cursor: pointer;
+      backdrop-filter: blur(2px);
+    }
+
+    .toast-notification.toast-hide {
+      transform: translateX(450px);
+      opacity: 0;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(450px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .toast-success { border-left: 6px solid #28a745; background: #ffffff; }
+    .toast-error { border-left: 6px solid #dc3545; background: #ffffff; }
+    .toast-warning { border-left: 6px solid #ffc107; background: #ffffff; }
+
+    body.dark-mode .toast-success,
+    body.dark-mode .toast-error,
+    body.dark-mode .toast-warning {
+      background: var(--toast-bg-dark);
+      color: var(--dark-text-primary);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      border-left-color: #28a745;
+    }
+    body.dark-mode .toast-error { border-left-color: #dc3545; }
+    body.dark-mode .toast-warning { border-left-color: #ffc107; }
+
+    .toast-icon { font-size: 28px; display: flex; align-items: center; justify-content: center; }
+    .toast-success .toast-icon { color: #28a745; }
+    .toast-error .toast-icon { color: #dc3545; }
+    .toast-warning .toast-icon { color: #ffc107; }
+    .toast-content { flex: 1; }
+    .toast-title { font-weight: 800; margin-bottom: 5px; font-size: 17px; letter-spacing: -0.2px; }
+    .toast-message { font-size: 14px; color: #555; line-height: 1.45; white-space: pre-line; }
+    body.dark-mode .toast-message { color: var(--dark-text-secondary); }
+    .toast-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #aaa;
+      padding: 0;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+    .toast-close:hover { background: rgba(0,0,0,0.08); color: #333; }
+    body.dark-mode .toast-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    h1 { font-size: 46px; line-height: 1.2; }
+    h2 { font-size: 36px; line-height: 1.3; }
+    h3 { font-size: 24px; line-height: 1.4; }
+    h4, h5, h6 { font-size: 20px; line-height: 1.4; }
+    li, span, p { font-size: 18px; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("Images/transparent-logo.jpeg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 570px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrapper {
+      max-width: 1920px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      padding-top: 82px;
+      background-color: var(--light);
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode .page-wrapper {
+      background-color: var(--dark-bg);
+    }
+
+    .content-layer { 
+      position: relative; 
+      z-index: 1;
+      min-height: calc(100vh - 200px);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--primary);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode header {
+      background: #1a1a2e;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.8);
+    }
+
+    .navbar-custom { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 24px; 
+      position: relative;
+      padding: 12px 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--light);
+    }
+
+    .brand img { 
+      width: 58px; 
+      height: 58px; 
+      object-fit: cover; 
+      border-radius: 8px;
+      border: 2px solid var(--light); 
+      opacity: 0.97; 
+      background: transparent; 
+    }
+
+    .nav-menu { 
+      display: flex; 
+      align-items: center; 
+      gap: 24px; 
+      flex: 1; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+    }
+
+    .nav-item { position: relative; }
+    .nav-link-custom {
+      color: var(--light);
+      padding: 4px 0;
+      opacity: 0.9;
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-link-custom::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .nav-link-custom:hover::after { width: 100%; }
+    .dropdown-toggle-custom::after { content: " ▾"; position: static; width: auto; height: auto; background: none; margin-left: 4px; }
+
+    .dropdown-menu-custom {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 6px);
+      background-color: var(--primary);
+      border-radius: 10px;
+      border: 1px solid rgba(248, 250, 252, 0.12);
+      min-width: 190px;
+      display: none;
+      padding: 6px 0;
+      z-index: 120;
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    body.dark-mode .dropdown-menu-custom {
+      background-color: #1a1a2e;
+      border-color: #3a3a4a;
+    }
+
+    .dropdown-menu-custom li a {
+      display: block;
+      padding: 8px 18px;
+      color: var(--light);
+      white-space: nowrap;
+      opacity: 0.9;
+      transition: background-color 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+    }
+
+    body.dark-mode .dropdown-menu-custom li a {
+      color: var(--dark-text-primary);
+    }
+
+    .dropdown-menu-custom li a:hover { background-color: rgba(243, 243, 250, 0.15); opacity: 1; color: var(--accent); }
+    .nav-item.dropdown.open>.dropdown-menu-custom { display: block; }
+
+    .nav-actions { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      margin-left: auto; 
+    }
+
+    .btn-animated { 
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease; 
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45); 
+    }
+
+    .btn-animated:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7); 
+      filter: brightness(0.96); 
+    }
+
+    .btn-register {
+      background: var(--accent);
+      color: var(--dark);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+    }
+
+    body.dark-mode .btn-register {
+      background: var(--accent);
+      color: #1a1a2e;
+    }
+
+    .mode-toggle {
+      border: 1px solid rgba(248, 250, 252, 0.7);
+      border-radius: 999px;
+      padding: 3px 6px;
+      font-size: 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+      color: var(--light);
+      background: transparent;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--light);
+      background: transparent;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--light);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .mobile-actions {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .site-footer {
+      background: var(--primary);
+      color: var(--light);
+      font-size: 14px;
+      width: 100%;
+      transition: background-color 0.3s;
+      padding: 30px 0 20px;
+      min-height: 180px;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    body.dark-mode .site-footer {
+      background: #1a1a2e;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 40px;
+    }
+
+    .footer-column { flex: 1; min-width: 250px; margin-bottom: 15px; }
+    .footer-brand-column { flex: 1.5; min-width: 300px; }
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; }
+    .footer-brand-text h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; color: var(--light); }
+    .footer-brand-text p { font-size: 15px; opacity: 0.9; max-width: 350px; margin-bottom: 20px; line-height: 1.6; }
+    .footer-social-icons { display: flex; gap: 12px; margin-top: 10px; }
+    .footer-social-icon {
+      width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      display: flex; align-items: center; justify-content: center; color: var(--light);
+      font-size: 18px; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .footer-social-icon:hover { background: var(--accent); color: #1a1a2e; transform: translateY(-3px); }
+    .footer-column h4 { font-size: 20px; font-weight: 700; margin-bottom: 20px; color: var(--light); position: relative; padding-bottom: 8px; }
+    .footer-links { list-style: none; padding: 0; margin: 0; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links li a { color: rgba(255, 255, 255, 0.85); text-decoration: none; transition: all 0.3s ease; display: inline-block; font-size: 15px; }
+    .footer-links li a:hover { color: var(--accent); transform: translateX(5px); }
+    .footer-links li i { margin-right: 8px; color: var(--accent); width: 16px; text-align: center; }
+    .footer-bottom { margin-top: 20px; text-align: center; font-size: 14px; opacity: 0.8; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.2); width: 100%; }
+
+    .auth-container { max-width: 500px; margin: 60px auto; padding: 0 20px; }
+    .auth-header { text-align: center; margin-bottom: 30px; }
+    .auth-header h2 { color: var(--primary); margin-bottom: 12px; font-size: 32px; }
+    body.dark-mode .auth-header h2 { color: #A0A4F5; }
+    .auth-header p { color: #666; font-size: 18px; }
+    body.dark-mode .auth-header p { color: var(--dark-text-secondary); }
+    .auth-card {
+      background: white; border-radius: 16px; padding: 40px 35px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; position: relative;
+      overflow: hidden;
+    }
+    body.dark-mode .auth-card {
+      background: var(--dark-surface);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+    .auth-card:hover { transform: translateY(-5px); }
+    .auth-tabs { display: flex; border-bottom: 2px solid #eee; margin-bottom: 30px; }
+    body.dark-mode .auth-tabs { border-bottom-color: var(--dark-border); }
+    .auth-tab {
+      flex: 1; padding: 15px; text-align: center; background: none; border: none;
+      font-family: 'Merriweather', serif; font-size: 20px; font-weight: 600;
+      color: #666; cursor: pointer; transition: all 0.3s ease; position: relative;
+    }
+    body.dark-mode .auth-tab { color: var(--dark-text-secondary); }
+    .auth-tab.active { color: var(--primary); }
+    body.dark-mode .auth-tab.active { color: var(--accent); }
+    .auth-tab.active::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background: var(--primary); }
+    body.dark-mode .auth-tab.active::after { background: var(--accent); }
+    .auth-form { display: flex; flex-direction: column; gap: 20px; }
+    .auth-form.active { display: flex; }
+    .auth-form.hidden { display: none; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; position: relative; }
+    .form-group label { color: var(--dark); font-weight: 600; font-size: 16px; }
+    body.dark-mode .form-group label { color: var(--dark-text-primary); }
+    .form-control {
+      padding: 14px 18px; border: 2px solid #ddd; border-radius: 10px; font-family: 'Merriweather', serif;
+      font-size: 16px; transition: border-color 0.3s ease; background: var(--light); width: 100%; padding-right: 50px;
+    }
+    body.dark-mode .form-control {
+      background: var(--dark-surface-lighter);
+      border-color: var(--dark-border);
+      color: var(--dark-text-primary);
+    }
+    body.dark-mode .form-control::placeholder {
+      color: #8888aa;
+    }
+    .form-control:focus { outline: none; border-color: var(--primary); }
+    body.dark-mode .form-control:focus { border-color: var(--accent); }
+    .form-control.error { border-color: #dc3545; }
+    .password-toggle {
+      position: absolute; right: 18px; top: 40px; transform: translateY(-50%); background: none; border: none;
+      color: #666; cursor: pointer; font-size: 18px; padding: 5px; display: flex; align-items: center; justify-content: center;
+    }
+    body.dark-mode .password-toggle { color: var(--dark-text-secondary); }
+    .auth-submit {
+      background: var(--accent); color: #1a1a2e; border: none; padding: 14px;
+      border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; font-family: 'Merriweather', serif;
+      transition: background-color 0.3s ease, transform 0.3s ease; margin-top: 10px;
+      width: 60%; margin-left: auto; margin-right: auto; display: block;
+    }
+    body.dark-mode .auth-submit {
+      background: var(--accent);
+      color: #1a1a2e;
+    }
+    .auth-submit:hover { background: #e8c460; transform: scale(1.02); }
+    .auth-link { text-align: center; margin-top: 10px; font-size: 15px; }
+    body.dark-mode .auth-link { color: var(--dark-text-secondary); }
+    .auth-link a { color: var(--primary); font-weight: 600; }
+    body.dark-mode .auth-link a { color: var(--accent); }
+    .social-login { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+    .social-btn {
+      width: 50px; height: 50px; border-radius: 50%; border: 2px solid #ddd; background: white;
+      color: #666; font-size: 20px; cursor: pointer; transition: all 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    body.dark-mode .social-btn {
+      background: var(--dark-surface-lighter);
+      border-color: var(--dark-border);
+      color: var(--dark-text-primary);
+    }
+    .error-message { color: #dc3545; font-size: 14px; margin-top: 5px; display: none; }
+    @media (max-width: 1030px) {
+      .navbar-custom { padding: 10px 16px; flex-wrap: wrap; }
+      .nav-actions.desktop-actions { display: none; }
+      .mobile-actions { display: flex; }
+      .menu-toggle { display: inline-flex; }
+      .nav-menu {
+        position: fixed; top: 0; right: -280px; width: 280px; flex-direction: column;
+        background: var(--primary); padding: 20px; transition: right 0.3s ease; z-index: 110;
+      }
+      body.dark-mode .nav-menu { background: #1a1a2e; }
+      .nav-menu.nav-open { right: 0; }
+      .dropdown-menu-custom { position: static; background: rgba(255,255,255,0.1); }
+      body.dark-mode .dropdown-menu-custom { background: rgba(0,0,0,0.3); }
+    }
+    @media (max-width: 576px) {
+      .auth-submit { width: 80%; }
+      .toast-notification { min-width: 280px; right: 12px; top: 80px; padding: 14px 18px; }
+      .auth-card { padding: 30px 20px; }
+    }
+    input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+/* Hide password eye icon in Chrome / Chromium browsers */
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-textfield-decoration-container {
+    display: none !important;
+}
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+  <div class="content-layer">
+    <header>
+      <nav class="navbar-custom">
+        <div class="brand">
+          <img src="Images/logo.jpeg" alt="Compass Housing Society Logo">
+          <span>Compass Housing<br> Society</span>
+        </div>
+        <div class="mobile-actions">
+          <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode"><span class="mode-icon">🌙</span></button>
+          <a href="login.html"><button class="btn-register btn-animated" type="button">Login</button></a>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link-custom">Home 1</a></li>
+          <li class="nav-item"><a href="home2.html" class="nav-link-custom">Home 2</a></li>
+          <li class="nav-item dropdown"><span class="nav-link-custom dropdown-toggle-custom">Services List</span><ul class="dropdown-menu-custom"><li><a href="services.html">Service</a></li><li><a href="servicedetails.html">Service Details</a></li></ul></li>
+          <li class="nav-item dropdown"><span class="nav-link-custom dropdown-toggle-custom">Blog Design</span><ul class="dropdown-menu-custom"><li><a href="blog.html">Blog</a></li><li><a href="blogdetails.html">Blog Details</a></li></ul></li>
+          <li class="nav-item dropdown"><span class="nav-link-custom dropdown-toggle-custom">About Us</span><ul class="dropdown-menu-custom"><li><a href="aboutus.html">About Us</a></li><li><a href="additionalpage.html">404</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="commingsoon.html">Comming Soon</a></li></ul></li>
+          <li class="nav-item"><a href="contactus.html" class="nav-link-custom">Contact Us</a></li>
+        </ul>
+        <div class="nav-actions desktop-actions">
+          <button class="mode-toggle" type="button" aria-label="Toggle dark / light mode"><span class="mode-icon">🌙</span></button>
+          <a href="login.html"><button class="btn-register btn-animated" type="button">Login</button></a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Toggle menu">☰</button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="auth-container">
+        <div class="auth-header">
+          <h2>Account Access</h2>
+          <p>Login to your existing account or register for new membership</p>
+        </div>
+        <div class="auth-card">
+          <div class="auth-tabs">
+            <button class="auth-tab active" id="loginTab">Login</button>
+            <button class="auth-tab" id="registerTab">Register</button>
+          </div>
+          
+          <form class="auth-form active" id="loginForm">
+            <div class="form-group"><label for="loginEmail">Email Address *</label><input type="email" id="loginEmail" class="form-control" placeholder="e.g., username@domain.com" required><div class="error-message" id="loginEmailError"></div></div>
+            <div class="form-group"><label for="loginPassword">Password *</label><input type="password" id="loginPassword" class="form-control" placeholder="Enter your password (exactly 8 chars)" required maxlength="8"><button type="button" class="password-toggle" id="loginPasswordToggle"><i class="fas fa-eye" style="padding-top: 40px;"></i></button><div class="error-message" id="loginPasswordError"></div></div>
+            <button type="submit" class="auth-submit">Login</button>
+            <div class="auth-link">Don't have an account? <a href="#" id="switchToRegister">Register here</a></div>
+            <div class="social-login"><a href="http://www.google.com"><button class="social-btn google" type="button"><i class="fab fa-google"></i></button></a><a href="http://www.facebook.com"><button class="social-btn facebook" type="button"><i class="fab fa-facebook-f"></i></button></a></div>
+          </form>
+
+          <form class="auth-form hidden" id="registerForm">
+            <div class="form-group"><label for="registerName">Full Name *</label><input type="text" id="registerName" class="form-control" placeholder="Enter your full name" required><div class="error-message" id="registerNameError"></div></div>
+            <div class="form-group"><label for="registerEmail">Email Address *</label><input type="email" id="registerEmail" class="form-control" placeholder="e.g., username@domain.com" required><div class="error-message" id="registerEmailError"></div></div>
+            <div class="form-group"><label for="registerPhone">Phone Number *</label><input type="tel" id="registerPhone" class="form-control" placeholder="10 digits starting with 6-9" required maxlength="10"><div class="error-message" id="registerPhoneError"></div></div>
+            <div class="form-group"><label for="registerPassword">Password *</label><input type="password" id="registerPassword" class="form-control" placeholder="Create a password (exactly 8 characters)" required maxlength="8"><button type="button" class="password-toggle" id="registerPasswordToggle"><i class="fas fa-eye" style="padding-top: 40px;"></i></button><div class="error-message" id="registerPasswordError"></div></div>
+            <div class="form-group"><label for="registerConfirmPassword">Confirm Password *</label><input type="password" id="registerConfirmPassword" class="form-control" placeholder="Confirm your password (exactly 8 characters)" required maxlength="8"><button type="button" class="password-toggle" id="registerConfirmPasswordToggle"><i class="fas fa-eye" style="padding-top: 40px;"></i></button><div class="error-message" id="registerConfirmPasswordError"></div></div>
+            <button type="submit" class="auth-submit">Create Account</button>
+            <div class="auth-link">Already have an account? <a href="#" id="switchToLogin">Login here</a></div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-column footer-brand-column"><div class="footer-brand"><div class="footer-brand-text"><h3>Compass Housing Society</h3><p>Your trusted partner in real estate. Finding homes that become memories.</p></div><div class="footer-social-icons"><a href="https://www.facebook.com/" class="footer-social-icon"><i class="fab fa-facebook-f"></i></a><a href="https://www.twitter.com/" class="footer-social-icon"><i class="fab fa-twitter"></i></a><a href="https://www.instagram.com/" class="footer-social-icon"><i class="fab fa-instagram"></i></a><a href="https://www.linkedin.com/" class="footer-social-icon"><i class="fab fa-linkedin-in"></i></a></div></div></div>
+        <div class="footer-column"><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li><li><a href="aboutus.html"><i class="fas fa-chevron-right"></i> About Us</a></li><li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li><li><a href="contactus.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li></ul></div>
+        <div class="footer-column"><h4>Our Services</h4><ul class="footer-links"><li><a href="servicedetails.html"><i class="fas fa-home"></i> Residential Sales</a></li><li><a href="servicedetails.html"><i class="fas fa-building"></i> Commercial Leasing</a></li><li><a href="servicedetails.html"><i class="fas fa-chart-line"></i> Investment Properties</a></li><li><a href="servicedetails.html"><i class="fas fa-search-dollar"></i> Property Valuation</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© Copyright Compass Housing Society 2024. All rights reserved.</p></div>
+    </footer>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Enhanced Toast System
+    function showToast(message, type = 'success') {
+      const existingToasts = document.querySelectorAll('.toast-notification');
+      existingToasts.forEach(toast => toast.remove());
+      const toast = document.createElement('div');
+      toast.className = `toast-notification toast-${type}`;
+      let icon = '', title = '';
+      if (type === 'success') { icon = '<i class="fas fa-check-circle"></i>'; title = '🎉 Success!'; }
+      else if (type === 'error') { icon = '<i class="fas fa-exclamation-triangle"></i>'; title = '⚠️ Validation Error'; }
+      else { icon = '<i class="fas fa-info-circle"></i>'; title = 'Notice'; }
+      toast.innerHTML = `<div class="toast-icon">${icon}</div><div class="toast-content"><div class="toast-title">${title}</div><div class="toast-message">${message}</div></div><button class="toast-close">&times;</button>`;
+      document.body.appendChild(toast);
+      let timeout = setTimeout(() => { if (toast && toast.parentNode) { toast.classList.add('toast-hide'); setTimeout(() => { if (toast.parentNode) toast.remove(); }, 300); } }, 5000);
+      const closeBtn = toast.querySelector('.toast-close');
+      closeBtn.addEventListener('click', () => { clearTimeout(timeout); toast.classList.add('toast-hide'); setTimeout(() => { if (toast.parentNode) toast.remove(); }, 300); });
+      toast.addEventListener('click', (e) => { if (e.target !== closeBtn && !closeBtn.contains(e.target)) { clearTimeout(timeout); toast.classList.add('toast-hide'); setTimeout(() => { if (toast.parentNode) toast.remove(); }, 300); } });
+    }
+
+    // Dark mode with enhanced visibility
+    const body = document.body;
+    const modeToggles = document.querySelectorAll(".mode-toggle");
+    const modeIcons = document.querySelectorAll(".mode-icon");
+    const storedTheme = localStorage.getItem("compass-theme");
+    if (storedTheme === "dark") { body.classList.add("dark-mode"); modeIcons.forEach(icon => icon.textContent = "☀️"); } 
+    else { modeIcons.forEach(icon => icon.textContent = "🌙"); }
+    modeToggles.forEach(toggle => { toggle.addEventListener("click", function () { const isDark = body.classList.toggle("dark-mode"); modeIcons.forEach(icon => icon.textContent = isDark ? "☀️" : "🌙"); localStorage.setItem("compass-theme", isDark ? "dark" : "light"); }); });
+
+    // Mobile menu & dropdown
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+    function closeMenu() { if (navMenu) navMenu.classList.remove("nav-open"); }
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener("click", function (e) { e.stopPropagation(); navMenu.classList.toggle("nav-open"); });
+      document.addEventListener('click', function(event) { if (window.innerWidth <= 1030 && navMenu.classList.contains('nav-open') && !navMenu.contains(event.target) && !menuToggle.contains(event.target)) closeMenu(); });
+    }
+    const dropdownItems = document.querySelectorAll(".nav-item.dropdown > .nav-link-custom");
+    dropdownItems.forEach(link => { link.addEventListener("click", function (e) { e.preventDefault(); const parent = this.parentElement; document.querySelectorAll(".nav-item.dropdown.open").forEach(item => { if (item !== parent) item.classList.remove("open"); }); parent.classList.toggle("open"); }); });
+    
+    // Tab switching
+    const loginTab = document.getElementById('loginTab'), registerTab = document.getElementById('registerTab'), loginForm = document.getElementById('loginForm'), registerForm = document.getElementById('registerForm'), switchToRegister = document.getElementById('switchToRegister'), switchToLogin = document.getElementById('switchToLogin');
+    function switchToRegisterTab() { loginTab.classList.remove('active'); registerTab.classList.add('active'); loginForm.classList.remove('active'); loginForm.classList.add('hidden'); registerForm.classList.remove('hidden'); registerForm.classList.add('active'); }
+    function switchToLoginTab() { registerTab.classList.remove('active'); loginTab.classList.add('active'); registerForm.classList.remove('active'); registerForm.classList.add('hidden'); loginForm.classList.remove('hidden'); loginForm.classList.add('active'); }
+    if (registerTab) registerTab.addEventListener('click', switchToRegisterTab);
+    if (loginTab) loginTab.addEventListener('click', switchToLoginTab);
+    if (switchToRegister) switchToRegister.addEventListener('click', function(e) { e.preventDefault(); switchToRegisterTab(); });
+    if (switchToLogin) switchToLogin.addEventListener('click', function(e) { e.preventDefault(); switchToLoginTab(); });
+
+    // Password toggle
+    function togglePasswordVisibility(inputId, btn) { const input = document.getElementById(inputId); const icon = btn.querySelector('i'); if (input.type === 'password') { input.type = 'text'; icon.classList.remove('fa-eye'); icon.classList.add('fa-eye-slash'); } else { input.type = 'password'; icon.classList.remove('fa-eye-slash'); icon.classList.add('fa-eye'); } }
+    const loginPassToggle = document.getElementById('loginPasswordToggle'), regPassToggle = document.getElementById('registerPasswordToggle'), regConfirmToggle = document.getElementById('registerConfirmPasswordToggle');
+    if (loginPassToggle) loginPassToggle.addEventListener('click', function() { togglePasswordVisibility('loginPassword', this); });
+    if (regPassToggle) regPassToggle.addEventListener('click', function() { togglePasswordVisibility('registerPassword', this); });
+    if (regConfirmToggle) regConfirmToggle.addEventListener('click', function() { togglePasswordVisibility('registerConfirmPassword', this); });
+
+    // ---------- UPDATED EMAIL VALIDATION: NO NUMBERS IN DOMAIN NAME ----------
+    function isValidEmail(email) {
+      if (!email || typeof email !== 'string') return false;
+      const trimmed = email.trim();
+      if (trimmed !== email || trimmed.includes(' ') || trimmed.includes('..')) return false;
+      const atIndex = trimmed.lastIndexOf('@');
+      if (atIndex === -1) return false;
+      
+      const localPart = trimmed.substring(0, atIndex);
+      if (localPart.length === 0) return false;
+      
+      const domainPart = trimmed.substring(atIndex + 1);
+      const dotLast = domainPart.lastIndexOf('.');
+      if (dotLast === -1) return false;
+      
+      const domainName = domainPart.substring(0, dotLast);
+      // Domain name must have at least 2 characters and contain ONLY letters (no numbers)
+      if (domainName.length < 2) return false;
+      if (!/^[A-Za-z]+$/.test(domainName)) return false;
+      
+      const tld = domainPart.substring(dotLast + 1);
+      const allowedTLDs = ['com', 'in', 'org', 'net'];
+      if (!allowedTLDs.includes(tld.toLowerCase())) return false;
+      
+      // Full email regex check
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[A-Za-z]+\.(com|in|org|net)$/i;
+      return emailRegex.test(trimmed);
+    }
+
+    function showError(elementId, message) { 
+      const errorElement = document.getElementById(elementId); 
+      const inputElement = document.getElementById(elementId.replace('Error', '')); 
+      if (errorElement) { errorElement.textContent = message; errorElement.style.display = 'block'; } 
+      if (inputElement) inputElement.classList.add('error'); 
+      return false;
+    }
+    
+    function hideError(elementId) { 
+      const errorElement = document.getElementById(elementId); 
+      const inputElement = document.getElementById(elementId.replace('Error', '')); 
+      if (errorElement) errorElement.style.display = 'none'; 
+      if (inputElement) inputElement.classList.remove('error'); 
+      return true;
+    }
+    
+    function validateEmailField(email, errorId) {
+      if (email === '') return showError(errorId, "Email is required");
+      if (email !== email.trim()) return showError(errorId, "Email cannot have leading/trailing spaces");
+      if (email.includes(' ')) return showError(errorId, "Email cannot contain spaces");
+      if (!isValidEmail(email)) return showError(errorId, "Invalid email format. Must be like user@domain.com/in/org/net (domain must contain only letters, no numbers, and be at least 2 characters)");
+      return hideError(errorId);
+    }
+    
+    function validateFullName(name, errorId) { 
+      if (name.trim() === '') return showError(errorId, "Full Name is required"); 
+      if (name !== name.trim()) return showError(errorId, "Full Name cannot have leading/trailing spaces"); 
+      if (!/^[A-Za-z\s]+$/.test(name)) return showError(errorId, "Full Name should only contain letters and spaces"); 
+      return hideError(errorId); 
+    }
+    
+    function validatePhoneNumber(phone, errorId) { 
+      if (phone === '') return showError(errorId, "Phone Number is required"); 
+      if (/\s/.test(phone)) return showError(errorId, "Phone Number cannot contain spaces"); 
+      if (!/^[6-9]\d{9}$/.test(phone)) return showError(errorId, "Phone Number must start with 6-9 and be exactly 10 digits"); 
+      return hideError(errorId); 
+    }
+    
+    function validatePassword(password, errorId) { 
+      if (password === '') return showError(errorId, "Password is required"); 
+      if (/\s/.test(password)) return showError(errorId, "Password cannot contain spaces"); 
+      if (password.length !== 8) return showError(errorId, "Password must be exactly 8 characters (no spaces)"); 
+      return hideError(errorId); 
+    }
+
+    // Login event listeners
+    const loginEmail = document.getElementById('loginEmail');
+    const loginPassword = document.getElementById('loginPassword');
+    if (loginEmail) loginEmail.addEventListener('input', function() { validateEmailField(this.value, 'loginEmailError'); });
+    if (loginPassword) loginPassword.addEventListener('input', function() { validatePassword(this.value, 'loginPasswordError'); });
+    
+    const loginFormElement = document.getElementById('loginForm');
+    if (loginFormElement) {
+      loginFormElement.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailValid = validateEmailField(loginEmail.value, 'loginEmailError');
+        const passValid = validatePassword(loginPassword.value, 'loginPasswordError');
+        
+        if (emailValid && passValid) {
+          const firstName = loginEmail.value.split('@')[0];
+          showToast(`✨ Welcome back, ${firstName}! You have successfully logged in. Enjoy your journey with Compass Housing. ✨`, 'success');
+          loginFormElement.reset();
+          ['loginEmailError', 'loginPasswordError'].forEach(id => hideError(id));
+        } else {
+          showToast("Please fix the errors before logging in.\n• Valid email (domain: letters only, 2+ chars)\n• Password must be exactly 8 characters", 'error');
+        }
+      });
+    }
+
+    // Register form with fixed validation
+    const registerFormElement = document.getElementById('registerForm');
+    const registerName = document.getElementById('registerName');
+    const registerPhone = document.getElementById('registerPhone');
+    const registerPassword = document.getElementById('registerPassword');
+    const registerConfirm = document.getElementById('registerConfirmPassword');
+    const registerEmail = document.getElementById('registerEmail');
+    
+    if (registerName) registerName.addEventListener('input', function() { validateFullName(this.value, 'registerNameError'); });
+    if (registerPhone) registerPhone.addEventListener('input', function() { validatePhoneNumber(this.value, 'registerPhoneError'); });
+    if (registerEmail) registerEmail.addEventListener('input', function() { validateEmailField(this.value, 'registerEmailError'); });
+    if (registerPassword) {
+      registerPassword.addEventListener('input', function() { 
+        validatePassword(this.value, 'registerPasswordError'); 
+        if (registerConfirm.value && this.value !== registerConfirm.value) {
+          showError('registerConfirmPasswordError', 'Passwords do not match');
+        } else if (registerConfirm.value && this.value === registerConfirm.value && this.value.length === 8) {
+          hideError('registerConfirmPasswordError');
+        }
+      });
+    }
+    if (registerConfirm) {
+      registerConfirm.addEventListener('input', function() { 
+        if (this.value !== registerPassword.value) {
+          showError('registerConfirmPasswordError', 'Passwords do not match');
+        } else if (validatePassword(registerPassword.value, 'registerPasswordError')) {
+          hideError('registerConfirmPasswordError');
+        }
+      });
+    }
+    
+    if (registerFormElement) {
+      registerFormElement.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const nameValid = validateFullName(registerName.value, 'registerNameError');
+        const emailValid = validateEmailField(registerEmail.value, 'registerEmailError');
+        const phoneValid = validatePhoneNumber(registerPhone.value, 'registerPhoneError');
+        const passValid = validatePassword(registerPassword.value, 'registerPasswordError');
+        
+        let confirmValid = true;
+        if (registerPassword.value !== registerConfirm.value) {
+          showError('registerConfirmPasswordError', 'Passwords do not match');
+          confirmValid = false;
+        } else {
+          hideError('registerConfirmPasswordError');
+        }
+        
+        if (nameValid && emailValid && phoneValid && passValid && confirmValid) {
+          showToast(`🎉 Welcome ${registerName.value}! Your account has been created successfully. You can now log in. 🎉`, 'success');
+          registerFormElement.reset();
+          ['registerNameError', 'registerEmailError', 'registerPhoneError', 'registerPasswordError', 'registerConfirmPasswordError'].forEach(id => hideError(id));
+          switchToLoginTab();
+        } else {
+          let errors = [];
+          if (!nameValid) errors.push('Full Name required (letters only)');
+          if (!emailValid) errors.push('Invalid email format (domain must contain only letters, no numbers, min 2 chars)');
+          if (!phoneValid) errors.push('Invalid phone (10 digits starting 6-9)');
+          if (!passValid) errors.push('Password must be exactly 8 characters');
+          if (!confirmValid) errors.push('Passwords do not match');
+          showToast(`❌ Please correct these issues:\n• ${errors.join('\n• ')}`, 'error');
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>
